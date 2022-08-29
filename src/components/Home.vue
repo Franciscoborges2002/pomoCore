@@ -1,20 +1,19 @@
 <template>
   <div class="container">
     <div id="tittle">
-      <h1>Pomo Vue</h1>
+      <h1><a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Pomo</a> Vue</h1>
     </div>
     <div class="main">
       <div class="buttons">
-        <button>
-          <p class="state">normal</p>
+        <button @click="handleSettingsButton">
+          <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
         </button>
-        <button @click="handlestartButton">
-          <p class="state">normal</p>
+        <button @click="handleStartButton">
+          <p class="stateMain">normal</p>
           <img src="@/assets/playButton.svg">
         </button>
-        <button>
-          <p class="state">normal</p>
+        <button @click="handleSkipButton">
           <img src="@/assets/skipButton.svg">
         </button>
       </div>
@@ -22,7 +21,9 @@
         {{timeDisplay}}
       </div>
     </div>
-    
+    <footer>
+      Made with &#x1F49C; by <a href="https://github.com/Franciscoborges2002" target="_blank">Francisco Borges</a>.
+    </footer>
   </div>
 </template>
 
@@ -30,29 +31,38 @@
     export default {
         name: 'Home',
         data: () =>{
-          const pomodoroDuration = 2.5;
+          const pomodoroDuration = 25;
+          const restDuration = 5;
           return {
             currentTimeInSeconds: pomodoroDuration * 60,
-            buttonsStart:[
-              {icon: require('@/assets/settingsButton.svg'),state: "normal",function: "handleSettingsButton"},
-              {icon: require('@/assets/playButton.svg'),state: "normal",function: "handleStartButton"},
-              {icon: require('@/assets/skipButton.svg'),state: "normal",function: "handleSkipButton"}
-            ],
-            otherButtons:[
-              {icon: require('@/assets/pauseButton.svg'),state: "pause",function: "handlePauseButton"},
-              {icon: require('@/assets/skipButton.svg'),state: "setHover",function: "handleSkipButton"}
-            ]
+            timeRunning: false,
         };
       },
       methods:{
         handleSettingsButton () {
-          console.log("asdasdasdasd")
         },
         handleStartButton () {
-          console.log("asdasd")
+          if(!this.timeRunning){
+            this.playClock("run");
+            this.timeRunning = true;
+          }else{
+            this.playClock("stop");
+          }
+          
         },
         handleSkipButton () {
-          console.log("ads")
+
+        },
+        playClock (state) {
+          if(state === "run"){
+            this.interval = setInterval(() => {
+              if(!(this.currentTimeInSeconds == 0)){
+                  this.currentTimeInSeconds -= 1;
+              }
+            }, 1000);
+          }else if(state === "stop"){
+
+          }
         }
       },
       computed: {
@@ -74,6 +84,7 @@
   display: flex;
   flex-direction:column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .main{
@@ -90,8 +101,19 @@
   align-content: space-between;
 }
 
-.buttons div p{
+.buttons button p{
   font-size: 0%;
+}
+
+.timer{/* Meter animação a ficar mais finoe depois bold outra vez quando começar */
+  font-size: 100px;
+  font-weight: 700;
+  font-style:normal;
+  transition: font-weight 1s ease;
+}
+
+.timer:hover{
+  font-style: italic;
 }
 
 button{
