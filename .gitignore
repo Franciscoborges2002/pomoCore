@@ -2,7 +2,7 @@
 node_modules
 /dist
 
-linksUsed.txt
+usedLinks.txt
 
 
 # local env files

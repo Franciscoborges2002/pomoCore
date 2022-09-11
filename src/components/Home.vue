@@ -8,8 +8,11 @@
         <button @click="handleSettingsButton">
           <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
+          <!-- <Popup v-if="popupTriggers.buttonTrigger">
+            <h2> Settings </h2>
+          </Popup> -->
         </button>
-        <button @click="handleStartButton">
+        <button @click="handleTimeButton">
           <p class="stateMain">normal</p>
           <img src="@/assets/playButton.svg">
         </button>
@@ -28,41 +31,56 @@
 </template>
 
 <script>
+  import Popup from './Popup.vue';
+
+  const config = require('../mainConfig.js');
+
     export default {
         name: 'Home',
+        components:{
+          Popup
+        },
         data: () =>{
-          const pomodoroDuration = 25;
-          const restDuration = 5;
+          const focusTime = localStorage.focusTime;
+          const lilBreak = localStorage.lilBreak;
+          const bigBreak = localStorage.bigBreak;
+          const currentState = localStorage.currentState;
+
+        /* const popupTriggers = ref({
+            buttonTrigger: false,
+            timedTrigger: false
+        }); */
           return {
-            currentTimeInSeconds: pomodoroDuration * 60,
+            currentTimeInSeconds: focusTime * 60,
             timeRunning: false,
         };
       },
       methods:{
         handleSettingsButton () {
+          
         },
-        handleStartButton () {
+        handleTimeButton () {
           if(!this.timeRunning){
-            this.playClock("run");
+            this.playClock();
             this.timeRunning = true;
           }else{
-            this.playClock("stop");
+            this.stopClock();
+            this.timeRunning = false;
           }
           
         },
         handleSkipButton () {
 
         },
-        playClock (state) {
-          if(state === "run"){
-            this.interval = setInterval(() => {
-              if(!(this.currentTimeInSeconds == 0)){
-                  this.currentTimeInSeconds -= 1;
-              }
-            }, 1000);
-          }else if(state === "stop"){
-
-          }
+        playClock () {
+          this.interval = setInterval(() => {
+            if(!(this.currentTimeInSeconds == 0)){
+                this.currentTimeInSeconds -= 1;
+            }
+          }, 1000);
+        },
+        stopClock(){
+          clearInterval(this.interval);
         }
       },
       computed: {
@@ -74,7 +92,28 @@
 
           return `${paddedMinutes}:${paddedSeconds}`;
         }
-      }
+      },
+      beforeCreate() {
+        if(typeof(Storage) !== "undefined"){//Verificar se a tem suporte à web storage
+          if(!localStorage.pomoDuration){//Não tem os tempo na localstorage
+            localStorage.focusTime = config.focusTime;
+            localStorage.lilBreak = config.lilBreak;
+            localStorage.bigBreak = config.bigBreak;
+            localStorage.currentState = config.startState;
+            localStorage.lilBreaksCounter = config.lilBreaksCounter;
+            
+          } else{//Tem os tempos na localstorage
+            console.log("Já tem registado")
+            /* localStorage.removeItem("focusTime")
+            localStorage.removeItem("lilBreak")
+            localStorage.removeItem("bigBreak") */
+          } 
+          //console.log(localStorage)
+        }else{//Se não houver suporte á web storage
+          console.log("oi")
+        }
+      },
+      
     }
 </script>
 
