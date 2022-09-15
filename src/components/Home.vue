@@ -5,12 +5,14 @@
     </div>
     <div class="main">
       <div class="buttons">
-        <button @click="handleSettingsButton">
+        <button @click=" togglePopup('buttonTrigger')">
           <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
-          <!-- <Popup v-if="popupTriggers.buttonTrigger">
-            <h2> Settings </h2>
-          </Popup> -->
+          <Popup>
+            <p>oi222</p>
+            <h2> Settings22 </h2>
+            
+          </Popup>
         </button>
         <button @click="handleTimeButton">
           <p class="stateMain">normal</p>
@@ -31,6 +33,8 @@
 </template>
 
 <script>
+  import {ref } from 'vue';
+
   import Popup from './Popup.vue';
 
   const config = require('../mainConfig.js');
@@ -40,19 +44,31 @@
         components:{
           Popup
         },
+        setup(){
+          const popupTriggers = ref({
+            buttonTrigger: false
+          });
+
+          const togglePopup = (trigger) => {
+            console.log(popupTriggers.value[trigger]);
+            popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+          }
+
+          return {
+            Popup,
+            popupTriggers,
+            togglePopup
+          }
+        },
         data: () =>{
           const focusTime = localStorage.focusTime;
           const lilBreak = localStorage.lilBreak;
           const bigBreak = localStorage.bigBreak;
           const currentState = localStorage.currentState;
 
-        /* const popupTriggers = ref({
-            buttonTrigger: false,
-            timedTrigger: false
-        }); */
           return {
             currentTimeInSeconds: focusTime * 60,
-            timeRunning: false,
+            timeRunning: false
         };
       },
       methods:{
