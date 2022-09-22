@@ -5,14 +5,11 @@
     </div>
     <div class="main">
       <div class="buttons">
-        <button @click=" togglePopup('buttonTrigger')">
+        <button @click="togglePopup('buttonTrigger')">
           <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
-          <Popup>
-            <p>oi222</p>
-            <h2> Settings22 </h2>
-            
-          </Popup>
+          <SettingsMenu v-if="popupTriggers.buttonTrigger" />
+          
         </button>
         <button @click="handleTimeButton">
           <p class="stateMain">normal</p>
@@ -33,16 +30,16 @@
 </template>
 
 <script>
-  import {ref } from 'vue';
+  import {ref} from 'vue';
 
-  import Popup from './Popup.vue';
+  import SettingsMenu from './SettingsMenu.vue';
 
   const config = require('../mainConfig.js');
 
     export default {
         name: 'Home',
         components:{
-          Popup
+          SettingsMenu
         },
         setup(){
           const popupTriggers = ref({
@@ -55,7 +52,7 @@
           }
 
           return {
-            Popup,
+            SettingsMenu,
             popupTriggers,
             togglePopup
           }
@@ -186,8 +183,8 @@ button:hover{
   background-color: #c7c7c7;
 }
 
-button:focus{
-  background-color: #000;
+button:active{
+  background-color:olive;
 }
 
 img{
