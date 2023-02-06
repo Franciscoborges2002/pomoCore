@@ -1,7 +1,10 @@
 <template>
   <div class="popup">
     <div class="popup-inner">
+      <div class="header">
         <h1>Settings</h1>
+        <span></span>
+      </div>
         <div class="innerOption">
           <h2>Focus Time:</h2>
           <input type="number" min="0" max="1440" class="innerOptionChanger" id="focusTime" :value="returnFocusTime()" />
@@ -75,6 +78,23 @@ export default {
 </script>
 
 <style>
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100% ;
+}
+
+.header span{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 20px;
+}
+.header span:hover{
+  color: black;
+}
+
 .popup{
     position: fixed;
     top: 0;

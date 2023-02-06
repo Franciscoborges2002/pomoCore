@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div id="tittle">
-      <h1><a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Pomo</a> Vue</h1>
+    <div id="title">
+      <h1><a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">pomo</a>Core</h1>
     </div>
     <div class="main">
       <div class="buttons">
@@ -12,8 +12,10 @@
           
         </button>
         <button @click="handleTimeButton">
+          
           <p class="stateMain">normal</p>
-          <img src="@/assets/playButton.svg">
+          <img v-if="playButtonShow" src="@/assets/playButton.svg">
+          <img v-else src="@/assets/pauseButton.svg">
         </button>
         <button @click="handleSkipButton">
           <img src="@/assets/skipButton.svg">
@@ -21,6 +23,11 @@
       </div>
       <div class="timer">
         {{timeDisplay}}
+      </div>
+      <div class="tasks">
+        <div class="tasksHeader">
+          <h2>Tasks</h2>
+        </div>
       </div>
     </div>
     <footer>
@@ -65,7 +72,8 @@
 
           return {
             currentTimeInSeconds: focusTime * 60,
-            timeRunning: false
+            timeRunning: false,
+            playButtonShow: true
         };
       },
       methods:{
@@ -73,6 +81,9 @@
           
         },
         handleTimeButton () {
+          console.log(this.playButtonShow)
+          this.playButtonShow = !this.playButtonShow;
+
           if(!this.timeRunning){
             this.playClock();
             this.timeRunning = true;
@@ -142,8 +153,29 @@
 .main{
   display: flex;
   flex-direction:row;
-  align-items: center; 
+  align-items: center;
   justify-content: space-between;
+  gap: 100px;
+}
+
+.tasks{
+  width: 330px;
+  height: 400px;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+}
+
+.tasksHeader{
+  width: 100%;
+  height: 62px;
+  box-shadow: 0 4px 4px 0px #383838;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.tasksHeader h2{
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .buttons{

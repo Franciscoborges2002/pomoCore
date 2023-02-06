@@ -4,4 +4,5 @@ module.exports = {
     bigBreak: 15,
     lilBreaksCounter: 0,
     startState: 'focusTime',
+    currentState: 'focusTime',
 }
