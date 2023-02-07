@@ -21,13 +21,29 @@
           <img src="@/assets/skipButton.svg">
         </button>
       </div>
-      <div class="timer">
-        {{timeDisplay}}
+      <div class="timerContainer">
+        <div class="timer">
+          {{timeDisplay}}
+        </div>
+        <div class="currentTask">
+          currentTask: {{ currentTask }}
+        </div>
       </div>
       <div class="tasks">
         <div class="tasksHeader">
           <h2>Tasks</h2>
         </div>
+        <div class="tasksBody">
+          <div class="taskList">
+            <task v-for="task in tasks" :key="task.id" :task="task" />
+          </div>
+        </div>
+        <form class="tasksAddTask" @submit.prevent="addTask(task)">
+          <input type="text" placeholder="Add task" v-model="task.description"/>
+          <span>Intervals:</span>
+          <input type="number" value="1" placeholder="1" min="1" v-model="task.totalIntervals"/><!-- Give error if the user puts 0 here -->
+          <button>+</button>
+        </form>
       </div>
     </div>
     <footer>
@@ -39,6 +55,7 @@
 <script>
   import {ref} from 'vue';
 
+  import Task from './Task.vue';
   import SettingsMenu from './SettingsMenu.vue';
 
   const config = require('../mainConfig.js');
@@ -46,7 +63,8 @@
     export default {
         name: 'Home',
         components:{
-          SettingsMenu
+          SettingsMenu,
+          Task
         },
         setup(){
           const popupTriggers = ref({
@@ -73,7 +91,13 @@
           return {
             currentTimeInSeconds: focusTime * 60,
             timeRunning: false,
-            playButtonShow: true
+            playButtonShow: true,
+            tasks: [],
+            task:{
+              checked: false,
+              intervalsMade: 0
+            },
+            currentTask: 'asd'/*Mudar a current task*/
         };
       },
       methods:{
@@ -105,6 +129,10 @@
         },
         stopClock(){
           clearInterval(this.interval);
+        },
+        addTask(task){
+          task.id = Date.now();
+          this.tasks.push(task);
         }
       },
       computed: {
@@ -141,7 +169,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .container{
   height: 100vh;
   display: flex;
@@ -178,6 +206,59 @@
   justify-content: center;
 }
 
+
+.tasks .tasksBody{
+  padding-top: 10px;
+  width: 100%;
+  height: 65%;
+}
+
+.tasks .tasksAddTask{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-end;
+}
+
+.tasks .tasksAddTask input{
+  width: 80%;
+}
+
+.tasks .tasksAddTask button{
+  margin: 0.8vw;
+  background-color: #D9D9D9;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #A1A1A1;
+  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.tasks .tasksAddTask button:hover{
+  background-color: #c7c7c7;
+}
+
+.tasks .tasksAddTask button:active{
+  background-color:olive;
+}
+
+.timerContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timerContainer .currentTask{
+  display: flex;
+  justify-content: center;
+}
+
 .buttons{
   display: flex;
   flex-direction:column;
@@ -200,6 +281,7 @@
   font-style: italic;
 }
 
+/* Style for all buttons*/
 button{
   margin: 0.8vw;
   background-color: #D9D9D9;
