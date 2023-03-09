@@ -12,7 +12,10 @@
         </div>
 
         <div class="taskActions">
-            <button>Done!</button>
+            <button @click="$emit('toggle', task)">
+                <span v-if="task.checked">Not done!</span>
+                <span v-else>Done!</span>
+            </button>
             <button>Remove</button>
         </div>
     </div>

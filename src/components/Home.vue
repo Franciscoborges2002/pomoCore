@@ -35,7 +35,7 @@
         </div>
         <div class="tasksBody">
           <div class="taskList">
-            <task v-for="task in tasks" :key="task.id" :task="task" />
+            <task v-for="task in tasks" :key="task.id" @toggle="toggleTask" :task="task" />
           </div>
         </div>
         <form class="tasksAddTask" @submit.prevent="addTask(task)">
@@ -57,6 +57,7 @@
 
   import Task from './Task.vue';
   import SettingsMenu from './SettingsMenu.vue';
+import { runInThisContext } from 'vm';
 
   const config = require('../mainConfig.js');
 
@@ -95,7 +96,8 @@
             tasks: [],
             task:{
               checked: false,
-              intervalsMade: 0
+              intervalsMade: 0,
+              totalIntervals: 1
             },
             currentTask: 'asd'/*Mudar a current task*/
         };
@@ -133,6 +135,14 @@
         addTask(task){
           task.id = Date.now();
           this.tasks.push(task);
+          /* this.task = { checked: false }; */
+        },
+        toggleTask(task){
+          //const index = this.tasks.findIndex(item => item.id === task.id);
+
+          if(index > -1){
+             // const checked = !this.tasks[index].checked;
+          }
         }
       },
       computed: {
@@ -179,11 +189,12 @@
 }
 
 .main{
+  width: 100%;
   display: flex;
   flex-direction:row;
   align-items: center;
-  justify-content: space-between;
-  gap: 100px;
+  justify-content: center;
+  gap: 30em;
 }
 
 .tasks{
@@ -261,7 +272,7 @@
 
 .buttons{
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   align-content: space-between;
 }
