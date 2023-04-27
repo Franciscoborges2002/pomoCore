@@ -1,7 +1,7 @@
 module.exports = {
     resolve:{
         fallback:{
-            "vm": false
+            "vm": require.resolve("vm-browserify")
         }
     }
 }

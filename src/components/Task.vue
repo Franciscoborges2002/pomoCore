@@ -7,7 +7,7 @@
 
             <div class="taskBody">
                 {{ task.intervalsMade }} / {{ task.totalIntervals }}
-                
+                {{ task.checked }}
             </div>
         </div>
 
@@ -44,5 +44,10 @@
     flex-wrap: nowrap;
     justify-content: space-between;
 
+}
+
+.checked{
+    font-size: small;
+    color:black;
 }
 </style>

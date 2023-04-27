@@ -5,12 +5,13 @@
     </div>
     <div class="main">
       <div class="buttons">
-        <button @click="togglePopup('buttonTrigger')">
+        <button @click="showSettingsModal = true"><!-- @click="togglePopup('buttonTrigger')" -->
           <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
-          <SettingsMenu v-if="popupTriggers.buttonTrigger" />
+          <!-- <SettingsMenu v-if="popupTriggers.buttonTrigger" /> -->
           
         </button>
+        <SettingsModal v-show="showSettingsModal" @close-modal="showSettingsModal = false"/>
         <button @click="handleTimeButton">
           
           <p class="stateMain">normal</p>
@@ -41,7 +42,7 @@
         <form class="tasksAddTask" @submit.prevent="addTask(task)">
           <input type="text" placeholder="Add task" v-model="task.description"/>
           <span>Intervals:</span>
-          <input type="number" value="1" placeholder="1" min="1" v-model="task.totalIntervals"/><!-- Give error if the user puts 0 here -->
+          <input type="number" vlaue="1" placeholder="1" min="1" v-model="task.totalIntervals"/><!-- Give error if the user puts 0 here -->
           <button>+</button>
         </form>
       </div>
@@ -57,15 +58,15 @@
 
   import Task from './Task.vue';
   import SettingsMenu from './SettingsMenu.vue';
-import { runInThisContext } from 'vm';
+  import SettingsModal from './SettingsModal.vue';
 
   const config = require('../mainConfig.js');
 
     export default {
         name: 'Home',
         components:{
-          SettingsMenu,
-          Task
+          Task,
+          SettingsModal,
         },
         setup(){
           const popupTriggers = ref({
@@ -99,7 +100,8 @@ import { runInThisContext } from 'vm';
               intervalsMade: 0,
               totalIntervals: 1
             },
-            currentTask: 'asd'/*Mudar a current task*/
+            currentTask: 'asd',/*Mudar a current task*/
+            showSettingsModal: false,
         };
       },
       methods:{
@@ -134,14 +136,22 @@ import { runInThisContext } from 'vm';
         },
         addTask(task){
           task.id = Date.now();
-          this.tasks.push(task);
-          /* this.task = { checked: false }; */
+
+          if(!task.description){
+            console.log("ERROR")
+          }{
+            this.tasks.push(task);
+            this.task = { checked: false };
+          }
+
+          console.log(this.tasks)
         },
         toggleTask(task){
-          //const index = this.tasks.findIndex(item => item.id === task.id);
+          const index = this.tasks.findIndex(item => item.id === task.id);
 
           if(index > -1){
-             // const checked = !this.tasks[index].checked;
+             const checked = !this.tasks[index].checked;
+             this.tasks[index].checked = checked;
           }
         }
       },

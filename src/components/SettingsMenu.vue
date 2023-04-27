@@ -11,11 +11,11 @@
         </div>
         <div class="innerOption">
           <h2>Litle Break:</h2>
-          <input type="number" min="0" max="1440" class="innerOptionChanger" id="lilBreak" :value="returnLilBreak()" />
+          <input type="number" min="0" max="1440" class="innerOptionChanger" id="lilBreak" :value="localStorage.focusTime" />
         </div>
         <div class="innerOption">
           <h2>Big Break:</h2>
-          <input type="number" min="0" max="1440" class="innerOptionChanger" id="bigBreak" :value="returnBigBreak()" />
+          <input type="number" min="0" max="1440" class="innerOptionChanger" id="bigBreak" :value="localStorage.focusTime" />
         </div>
         <button class="closeSettings" @click="closeSettingsMenu()">Save!</button>
     </div>
