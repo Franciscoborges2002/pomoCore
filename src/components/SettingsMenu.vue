@@ -17,6 +17,10 @@
           <h2>Big Break:</h2>
           <input type="number" min="0" max="1440" class="innerOptionChanger" id="bigBreak" :value="localStorage.focusTime" />
         </div>
+        <div class="innerOption">
+          <h2>Want Music</h2>
+          <input type="number" min="0" max="1440" class="innerOptionChanger" id="bigBreak" :value="localStorage.focusTime" />
+        </div>
         <button class="closeSettings" @click="closeSettingsMenu()">Save!</button>
     </div>
   </div>
@@ -65,10 +69,10 @@ export default {
     },
     appearPopUp(){
 
-    },
+    }/* ,
     closeSettingsMenu(trigger){
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-    }
+    } */
     /* togglePopup (trigger) {   @click="togglePopup('buttonTrigger')"
             console.log("popUp:" +popupTriggers.value[trigger]);
             popupTriggers.value[trigger] = !popupTriggers.value[trigger];

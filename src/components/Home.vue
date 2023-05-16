@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div id="title">
+    <div id="header">
       <h1><a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">pomo</a>Core</h1>
     </div>
     <div class="main">
-      <div class="buttons">
+      <div class="buttons corePart left">
         <button @click="showSettingsModal = true"><!-- @click="togglePopup('buttonTrigger')" -->
           <p class="stateSettings">normal</p>
           <img src="@/assets/settingsButton.svg">
@@ -22,7 +22,7 @@
           <img src="@/assets/skipButton.svg">
         </button>
       </div>
-      <div class="timerContainer">
+      <div class="timerContainer corePart center">
         <div class="timer">
           {{timeDisplay}}
         </div>
@@ -30,7 +30,7 @@
           currentTask: {{ currentTask }}
         </div>
       </div>
-      <div class="tasks">
+      <div class="tasks corePart right">
         <div class="tasksHeader">
           <h2>Tasks</h2>
         </div>
@@ -47,6 +47,7 @@
         </form>
       </div>
     </div>
+    <audio type="audio/mp3" src="https://www.youtube.com/watch?v=ZhstyJSNKME" autoplay loop></audio>
     <footer>
       Made with &#x1F49C; by <a href="https://github.com/Franciscoborges2002" target="_blank">Francisco Borges</a>.
     </footer>
@@ -63,7 +64,7 @@
   const config = require('../mainConfig.js');
 
     export default {
-        name: 'Home',
+        name: 'HomeComponent',
         components:{
           Task,
           SettingsModal,
@@ -134,10 +135,12 @@
         stopClock(){
           clearInterval(this.interval);
         },
-        addTask(task){
+        addTask(task){/* Function to add the task to the localStorage*/
           task.id = Date.now();
 
-          if(!task.description){
+          console.log(task.intervalsMade)
+
+          if(task.description){
             console.log("ERROR")
           }{
             this.tasks.push(task);
@@ -173,6 +176,9 @@
             localStorage.bigBreak = config.bigBreak;
             localStorage.currentState = config.startState;
             localStorage.lilBreaksCounter = config.lilBreaksCounter;
+            localStorage.wantsMusic = config.wantsMusic;
+            localStorage.tasks = config.tasks;
+            localStorage.currentTask = config.currentTask;
             
           } else{//Tem os tempos na localstorage
             console.log("Já tem registado")
@@ -191,6 +197,7 @@
 
 <style scoped>
 .container{
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction:column;
@@ -203,8 +210,30 @@
   display: flex;
   flex-direction:row;
   align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+/*.left.corePart, .right.corePart{
+  flex: 1; 
+  display: flex;
+  min-width: -webkit-min-content; /* Workaround to Chrome bug 
+}
+
+.right.corePart {
+  justify-content: flex-end;
+}*/
+
+
+#header, footer{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
   justify-content: center;
-  gap: 30em;
+}
+
+iframe{
+  display:none;
 }
 
 .tasks{

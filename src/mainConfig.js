@@ -5,4 +5,7 @@ module.exports = {
     lilBreaksCounter: 0,
     startState: 'focusTime',
     currentState: 'focusTime',
+    wantsMusic: true,
+    tasks: [],
+    currentTask: "",
 }

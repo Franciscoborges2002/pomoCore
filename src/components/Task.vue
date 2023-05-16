@@ -2,7 +2,9 @@
     <div class="taskContainer">
         <div class="taskContent">
             <div class="taskTitle">
-                {{ task.description}}
+                <span v-if="task.checked">✔️</span>
+                <span v-else>❌</span>
+                {{ task.description }}
             </div>
 
             <div class="taskBody">
@@ -12,9 +14,10 @@
         </div>
 
         <div class="taskActions">
+            <button @click="markCurrentTask(task)">aa</button>
             <button @click="$emit('toggle', task)">
-                <span v-if="task.checked">Not done!</span>
-                <span v-else>Done!</span>
+                <span v-if="task.checked">❌</span>
+                <span v-else>✔️</span>
             </button>
             <button>Remove</button>
         </div>
@@ -24,15 +27,20 @@
 <script>
 
     export default {
-        name: "Task",
+        name: "TaskComponent",
 
         props:{
             task:{
                 type: Object,
                 required: true
             }
-        }
+        },
 
+        methods:{
+            markCurrentTask(task){
+                localStorage.currenTask = task.description;
+            }
+        }
     };
 
 </script>

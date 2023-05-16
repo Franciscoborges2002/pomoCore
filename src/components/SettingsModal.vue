@@ -16,6 +16,10 @@
             <h2>Big Break:</h2>
             <input type="number" min="0" max="1440" class="innerOptionChanger" id="bigBreak" :value="returnBigBreak()" />
           </div>
+          <div class="innerOption">
+            <h2>Want Music</h2>
+            <input type="checkbox" :value="returnBigBreak()" />
+          </div>
           <button class="closeSettings" @click="$emit('close-modal')">Save!</button>
         </div>
         <div class="close" >
@@ -39,6 +43,9 @@ export default {
         },
         returnBigBreak(){
             return localStorage.bigBreak;
+        },
+        returnWantsMusic(){
+            return localStorage.wantsMusic;
         },
         saveOnLocalStorage(){
             /* console.log(document.getElementById("focusTime").value)
