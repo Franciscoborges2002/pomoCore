@@ -35,7 +35,9 @@
   color: #858585;
 }
 
-#app {
+body{
+  width: 100%;
+  height: 100%;
   background: #CDCDCD;
 }
 </style>

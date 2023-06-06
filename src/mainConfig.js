@@ -6,6 +6,6 @@ module.exports = {
     startState: 'focusTime',
     currentState: 'focusTime',
     wantsMusic: true,
-    tasks: [],
+    tasks: '[]',
     currentTask: "",
 }

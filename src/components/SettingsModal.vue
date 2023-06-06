@@ -20,7 +20,7 @@
             <h2>Want Music</h2>
             <input type="checkbox" :value="returnBigBreak()" />
           </div>
-          <button class="closeSettings" @click="$emit('close-modal')">Save!</button>
+          <button class="closeSettings" @click="saveOnLocalStorage()">Save!</button>
         </div>
         <div class="close" >
             <button @click="$emit('close-modal')">X</button>
@@ -54,7 +54,7 @@ export default {
             localStorage.focusTime = document.getElementById("focusTime").value;
             localStorage.lilBreak = document.getElementById("lilBreak").value;
             localStorage.bigBreak = document.getElementById("bigBreak").value;
-            console.log("Settings were saved!");
+            alert("Settings were saved!");
         }
     }
 }
