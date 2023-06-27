@@ -1,25 +1,29 @@
 <template>
   <div class="taskContainer">
     <div class="taskContent">
-      <div class="taskTitle">
-        <!--                 <span v-if="task.checked">✔️</span>
-                <span v-else-if="makingTask(task)">⭕</span>
-                <span v-else>❌</span> -->
-        <span>{{ task.description }}</span> ({{ task.intervalsMade }} /
-        {{ task.totalIntervals }})
+      <div class="taskBody" v-if="task.checked" style="text-decoration: line-through">
+        <span v-if="task.working" style="font-weight: bold">{{
+          task.description
+        }}</span>
+        <span v-else style="font-weight: normal">{{ task.description }}</span>
+        ({{ task.intervalsMade }} / {{ task.totalIntervals }})
       </div>
-      current Task : {{ currentTask }}
 
-      <!--             <div class="taskBody">
-                {{ task.intervalsMade }} / {{ task.totalIntervals }}
-                {{ task.checked }}
-            </div> -->
+      <div class="taskBody" v-else style="text-decoration: normal">
+        <span v-if="task.working" style="font-weight: bold">{{
+          task.description
+        }}</span>
+        <span v-else style="font-weight: normal">{{ task.description }}</span>
+        ({{ task.intervalsMade }} / {{ task.totalIntervals }})
+      </div>
     </div>
 
     <div class="taskActions">
-      <button @click="makingTask(task)">
-        <span v-if="this.currentTask === task.description">✏️</span>
-        <span v-else>📚</span>
+      <button>
+        <span v-if="task.working" @click="$emit('changeWorking', task)"
+          >✏️</span
+        >
+        <span v-else @click="$emit('changeWorking', task)">📚</span>
       </button>
       <button>
         <span>⚙️</span>
@@ -30,37 +34,20 @@
 </template>
 
 <script>
-
 export default {
-    name: "TaskComponent",
+  name: "TaskComponent",
 
-    props:{
-        task:{
-            type: Object,
-            required: true
-        }
+  props: {
+    task: {
+      type: Object,
+      required: true,
     },
-
-    data: () =>{
-
-        var useCurrentTask = "";
-
-            if (localStorage.currentTask) {
-            useCurrentTask = localStorage.currentTask;
-            }
-
-        return{
-            currentTask: useCurrentTask
-        }
+  },
+  methods: {
+    makeTask(task) {
+      this.$emit("submitCurrentTask", task);
     },
-    methods:{
-        makingTask(task){
-            console.log(this.currentTask)
-            this.currentTask = task.description;
-            this.$emit('submitCurrentTask', task);
-            return true;
-        }
-    }
+  },
 };
 </script>
 
