@@ -8,6 +8,13 @@
           >pomo</a
         >Core
       </h1>
+      <a
+        class="linkGitHub"
+        target="_blank"
+        href="https://github.com/Franciscoborges2002/pomoCore"
+      >
+        <img class="gitHubIcon" src="@/assets/gitHub.svg" />
+      </a>
     </div>
     <div class="main">
       <div class="buttons corePart left">
@@ -86,7 +93,8 @@ import { ref } from "vue";
 import Task from "@/components/Task.vue";
 import SettingsMenu from "@/components/SettingsMenu.vue";
 import SettingsModal from "@/components/SettingsModal.vue";
-import ModalPopUp from "@/components/ModalPopUp.vue";
+import TaskSettingsModal from "@/components/TaskSettingsModal.vue";
+//import ModalPopUp from "@/components/ModalPopUp.vue";
 
 import TimeStates from "@/enums/TimeStates";
 const config = require("@/mainConfig.js");
@@ -96,7 +104,7 @@ export default {
   components: {
     Task,
     SettingsModal,
-    ModalPopUp,
+    TaskSettingsModal,
   },
   setup() {
     const popupTriggers = ref({
@@ -115,17 +123,14 @@ export default {
     };
   },
   data: () => {
-    const focusTime = localStorage.focusTime;//getting time in seconds
-    const lilBreakTime = localStorage.lilBreak;//getting time in seconds
-    const bigBreakTime = localStorage.bigBreak;//getting time in seconds
+    const focusTime = localStorage.focusTime; //getting time in seconds
+    const lilBreakTime = localStorage.lilBreak; //getting time in seconds
+    const bigBreakTime = localStorage.bigBreak; //getting time in seconds
     const currentState = localStorage.currentState;
     const currentTimeInSeconds = localStorage.currentTimeInSeconds;
     var time2Use;
     var useCurrentTask = "";
     const audio = JSON.parse(localStorage.getItem("audio"));
-    console.log(audio)
-
-    console.log(localStorage.currentState);
 
     if (currentState === TimeStates.focus) {
       time2Use = focusTime;
@@ -139,7 +144,7 @@ export default {
       time2Use = bigBreakTime;
     }
 
-    if(time2Use > currentTimeInSeconds){
+    if (time2Use > currentTimeInSeconds) {
       time2Use = currentTimeInSeconds;
     }
 
@@ -162,9 +167,9 @@ export default {
         intervalsMade: 0,
         totalIntervals: 1,
       },
-      audio:{
+      audio: {
         audio: audio.audio,
-        volume: audio.volume
+        volume: audio.volume,
       },
       currentTask: useCurrentTask /*Mudar a current task*/,
       showSettingsModal: false,
@@ -182,8 +187,7 @@ export default {
         this.stopClock();
         this.timeRunning = false;
         //save the current time in localStorage
-        //console.log(this.currentTimeInSeconds)
-        localStorage.setItem("currentTimeInSeconds", this.currentTimeInSeconds)
+        localStorage.setItem("currentTimeInSeconds", this.currentTimeInSeconds);
       }
     },
     handleSkipButton() {
@@ -249,34 +253,32 @@ export default {
       //Push to the tasks object in vue to display
       this.tasks.push(taskAdd);
       this.task = { checked: false, intervalsMade: 0 };
-
-      console.log(this.tasks);
     },
     removeTask(task) {
-      let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
-      //verify the current Task
-      if (this.currentTask.id === task.id) {
-        localStorage.setItem("currentTask", "{}");
-        this.currentTask = "";
-      }
+      if (window.confirm("Do you want to really delete the task?")) {
+        let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
+        //verify the current Task
+        if (this.currentTask.id === task.id) {
+          localStorage.setItem("currentTask", "{}");
+          this.currentTask = "";
+        }
 
-      console.log(this.currentTask);
+        //Remove from localStorage
+        const localStorageIndexTasks = localStorageTasks.findIndex(
+          (item) => item.id === task.id
+        ); //get the index of the object
 
-      //Remove from localStorage
-      const localStorageIndexTasks = localStorageTasks.findIndex(
-        (item) => item.id === task.id
-      ); //get the index of the object
+        if (localStorageIndexTasks > -1) {
+          localStorageTasks.splice(localStorageIndexTasks, 1); //Remove from array
+        }
 
-      if (localStorageIndexTasks > -1) {
-        localStorageTasks.splice(localStorageIndexTasks, 1); //Remove from array
-      }
+        localStorage.setItem("tasks", JSON.stringify(localStorageTasks)); //save aagain in localStorage
 
-      localStorage.setItem("tasks", JSON.stringify(localStorageTasks)); //save aagain in localStorage
-
-      //Remove from tasks object
-      const indexTasks = this.tasks.findIndex((item) => item.id === task.id);
-      if (indexTasks > -1) {
-        this.tasks.splice(indexTasks, 1);
+        //Remove from tasks object
+        const indexTasks = this.tasks.findIndex((item) => item.id === task.id);
+        if (indexTasks > -1) {
+          this.tasks.splice(indexTasks, 1);
+        }
       }
     },
     changeWorking(task) {
@@ -284,15 +286,10 @@ export default {
       let indexWorkingTask;
       //this.currentTask = task;
 
-      console.log(this.currentTask);
-
       if (this.currentTask) {
-        console.log("TESTEEEE");
         indexWorkingTask = localStorageTasks.findIndex(
           (item) => item.id === this.currentTask.id
         ); //get the index of the object
-
-        console.log(indexWorkingTask);
 
         if (indexWorkingTask > -1) {
           localStorageTasks[indexWorkingTask].working = false;
@@ -300,8 +297,6 @@ export default {
           let item = this.tasks[indexWorkingTask];
 
           item.working = false;
-          console.log(this.tasks);
-          console.log(localStorageTasks);
         }
       }
 
@@ -309,8 +304,6 @@ export default {
       const indexTaskChange = localStorageTasks.findIndex(
         (item) => item.id === task.id
       ); //get the index of the object
-
-      console.log(indexTaskChange);
 
       if (indexTaskChange > -1) {
         //change the one that we are working in
@@ -327,14 +320,11 @@ export default {
       this.currentTask = task;
     },
     addInterval(task) {
-      console.log(task);
       //change value in the localStorage
       let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
       const localStorageIndexTasks = localStorageTasks.findIndex(
         (item) => item.id === task.id
       ); //get the index of the object
-      console.log(localStorageIndexTasks);
-      console.log(localStorageTasks);
 
       if (localStorageIndexTasks > -1) {
         /* for(let i = 0; i < localStorageTasks.length; i++){
@@ -345,8 +335,6 @@ export default {
 
         localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
       }
-
-      console.log(localStorageTasks);
 
       //change the  value in tasks obect
       const index = this.tasks.findIndex((item) => item.id === task.id);
@@ -364,7 +352,6 @@ export default {
       const maxLilBreaks = parseInt(localStorage.getItem("maxLilBreaks"));
       //const localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
       //const tasks = this.tasks;
-      const currentTask = this.currentTask;
 
       //If we are currently in focus State
       if (currentState === TimeStates.focus) {
@@ -372,67 +359,81 @@ export default {
           //If lilBreak is less than the max lil breaks we need to have another liltle break
           localStorage.setItem("currentState", TimeStates.littleBreak);
           this.currentState = TimeStates.littleBreak;
-          let time2Use = localStorage.lilBreak;
-          this.currentTimeInSeconds = time2Use;
 
+          //get the time to use
+          let time2Use = localStorage.lilBreak;
+
+          //set it to the current time in seconds both in app and localStorage
+          this.currentTimeInSeconds = time2Use;
+          localStorage.setItem("currentTimeInSeconds", time2Use);
+
+          //add 1 to the lilBreaks counter
           localStorage.setItem("lilBreaksCounter", lilBreaksCounter + 1);
         } else {
           //If little break is equal go to bit break
           localStorage.setItem("currentState", TimeStates.bigBreak);
           this.currentState = TimeStates.bigBreak;
 
+          //get the time to use
           let time2Use = localStorage.bigBreak;
-          this.currentTimeInSeconds = time2Use;
 
+          //set it to the current time in seconds both in app and localStorage
+          this.currentTimeInSeconds = time2Use;
+          localStorage.setItem("currentTimeInSeconds", time2Use);
+
+          //add 1 to the lilBreaks counter
           localStorage.setItem("lilBreaksCounter", 0);
         }
+
+        this.addIntervalTask(this.currentTask);
       } else {
         //If we are on one of the breaks
         localStorage.setItem("currentState", TimeStates.focus);
         this.currentState = TimeStates.focus;
 
+        //get the time to use
         let time2Use = localStorage.focusTime;
+
+        //set it to the current time in seconds both in app and localStorage
         this.currentTimeInSeconds = time2Use;
+        localStorage.setItem("currentTimeInSeconds", time2Use);
       }
-
+    },
+    addIntervalTask(task) {
+      //const currentTask = this.currentTask;
       //get task
-      const taskIndex = this.tasks.findIndex(
-        (item) => item.id === currentTask.id
-      );
+      const taskIndex = this.tasks.findIndex((item) => item.id === task.id);
 
-      console.log(taskIndex);
       //add an interval
-
       if (taskIndex > -1) {
         this.addInterval(this.tasks[taskIndex]);
       }
-
-      console.log(this);
     },
   },
   computed: {
     timeDisplay() {
       let paddedMinutes, paddedSeconds, minutes, seconds;
-      if(this.currentTimeInSeconds < 60){
+      if (this.currentTimeInSeconds < 60) {
         minutes = 0;
         seconds = this.currentTimeInSeconds;
         paddedMinutes = "00";
         paddedSeconds = ("0" + this.currentTimeInSeconds).slice(-2);
-      }else{
+      } else {
         minutes = parseInt(this.currentTimeInSeconds / 60);
         seconds = this.currentTimeInSeconds % 60;
         paddedMinutes = ("0" + minutes).slice(-2);
         paddedSeconds = ("0" + seconds).slice(-2);
       }
-      
 
       //verify if the timer is 0
       if (minutes === 0 && seconds === 0) {
         this.passCurrentState();
-/*         this.handleTimeButton(); */
-        var audio = new Audio(require(`@/assets/sounds/${this.audio.audio}.mp3`));
-        audio.volume = 0.05;
-        audio.play();
+        /*         this.handleTimeButton(); */
+        var audioRing = new Audio(
+          require(`@/assets/sounds/${this.audio.audio}.mp3`)
+        );
+        audioRing.volume = this.audio.volume;
+        audioRing.play();
       }
 
       return `${paddedMinutes}:${paddedSeconds}`;
@@ -448,18 +449,18 @@ export default {
         localStorage.bigBreak = config.bigBreak;
         localStorage.currentState = config.startState;
         localStorage.lilBreaksCounter = config.lilBreaksCounter;
-        localStorage.wantsMusic = config.wantsMusic;
         localStorage.tasks = config.tasks;
         localStorage.currentTask = config.currentTask;
         localStorage.maxLilBreaks = config.maxLilBreaks;
         localStorage.audio = JSON.stringify(config.audio);
       } else {
         //Already has the things in localStorage
-        console.log("Já tem registado");
+        console.log("Items registered in localStorage");
       }
     } else {
       //There is no support to web storage
-      console.log("Não existe suporte ao localStorage");
+      console.log("There is no suport to localStorage!");
+      alert("There is no suport to localStorage!");
     }
   },
 };
@@ -663,5 +664,20 @@ img {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #676767;
+}
+
+.gitHubIcon {
+  width: 25px;
+  height: 25px;
+  padding-left: 5px;
+}
+
+.linkGitHub {
+  width: 25px;
+  height: 25px;
+}
+
+.linkGitHub:hover {
+  transform: rotate(5px);
 }
 </style>

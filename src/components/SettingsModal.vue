@@ -1,8 +1,8 @@
 <template>
-  <div class="modal-overlay" @click="$emit('close-modal')">
+  <div class="modalOverlay" @click="$emit('close-modal')">
     <div class="modal" @click.stop>
       <!-- <img class="check" src="~/assets/check-icon.png" alt="" /> -->
-      <button class="closeModal" @click="$emit('close-modal')">X</button>
+      <button class="closeModal" @click="$emit('close-modal')">Close</button>
       <div class="header">
         <h1>Settings:</h1>
       </div>
@@ -75,33 +75,37 @@
       </div>
       <div class="innerOption">
         <h2>Sound Effect</h2>
-        <div>
+        <div class="soundEffectOptions">
           <select v-model="audio.audio">
             <option>sound1</option>
             <option>sound2</option>
           </select>
-          <input
+          <div>
+            <input
               type="number"
               min="0"
               max="100"
               class="innerOptionMusicVolume"
               id="bigBreakMinutes"
               v-model="audio.volume"
-            /> %
+            />
+            %
+          </div>
         </div>
-        </div>
-      <div class="innerOption">
+      </div>
+      <!-- <div class="innerOption">
         <h2>Want Music</h2>
         <input type="checkbox" :checked="wantMusic" @click="wantsMusic()"/>
       </div>
       <div class="innerOption" v-if="wantMusic">
         <h2>Provide a yt music:</h2>
         <input type="text" id="musicLink"/>
+      </div> -->
+
+      <div class="dangerStuff">
+        <p class="dangerText" @click="deleteEverything()">Delete Everything</p>
       </div>
       <button class="saveSettings" @click="saveOnLocalStorage()">Save!</button>
-    </div>
-    <div class="close">
-      
     </div>
   </div>
 </template>
@@ -110,59 +114,86 @@
 export default {
   data: () => {
     const localStorageAudio = JSON.parse(localStorage.audio);
-    return{
-      audio:{
+    return {
+      audio: {
         audio: localStorageAudio.audio,
         volume: localStorageAudio.volume * 100,
-      },
-      wantMusic: JSON.parse(localStorage.wantsMusic),
+      }/* ,
+      wantMusic: JSON.parse(localStorage.wantsMusic), */
     };
   },
   methods: {
     returnFocusTimeMinutes() {
       if (localStorage.focusTime < 60) {
-        return 0;
+        return "00";
       }
 
-      return localStorage.focusTime / 60;
+      if((localStorage.focusTime / 60) < 10){
+        return "0" + (localStorage.focusTime / 60);
+      }
+
+      return Math.floor(localStorage.focusTime / 60);
     },
     returnFocusTimeSeconds() {
-      if (localStorage.focusTime < 60) {
-        return localStorage.focusTime;
+      let checkTime = localStorage.focusTime % 60;//get the seconds that are left
+      
+      if (checkTime < 60) {
+        if(checkTime < 10){
+          return "0" + checkTime;
+        }
+        return checkTime;
       }
 
-      return localStorage.focusTime % 60;
+      return checkTime % 60;
     },
     returnLilBreak() {
       return localStorage.lilBreak;
     },
     returnLilBreakMinutes() {
       if (localStorage.lilBreak < 60) {
-        return 0;
+        return "00";
       }
 
-      return localStorage.lilBreak / 60;
+      if((localStorage.lilBreak / 60) < 10){
+        return "0" + (localStorage.lilBreak / 60);
+      }
+
+      return Math.floor(localStorage.lilBreak / 60);
     },
     returnLilBreakSeconds() {
-      if (localStorage.lilBreak < 60) {
-        return localStorage.lilBreak;
+      let checkTime = localStorage.lilBreak % 60;//get the seconds that are left
+      
+      if (checkTime < 60) {
+        if(checkTime < 10){
+          return "0" + checkTime;
+        }
+        return checkTime;
       }
 
-      return localStorage.lilBreak % 60;
+      return checkTime % 60;
     },
     returnBigBreakMinutes() {
       if (localStorage.bigBreak < 60) {
-        return 0;
+        return "00";
       }
 
-      return localStorage.bigBreak / 60;
+      if((localStorage.bigBreak / 60) < 10){
+        return "0" + (localStorage.bigBreak / 60);
+      }
+
+      return Math.floor(localStorage.bigBreak / 60);
     },
     returnBigBreakSeconds() {
-      if (localStorage.bigBreak < 60) {
-        return localStorage.bigBreak;
+      let checkTime = localStorage.bigBreak % 60;//get the seconds that are left
+      
+      if (checkTime < 60) {
+        if(checkTime < 10){
+          return "0" + checkTime;
+        }
+        return checkTime;
       }
 
-      return localStorage.bigBreak % 60;
+      return checkTime % 60;
     },
     returnBigBreak() {
       return localStorage.bigBreak;
@@ -170,38 +201,49 @@ export default {
     returnWantsMusic() {
       return localStorage.wantsMusic;
     },
-    wantsMusic(){
+    /* wantsMusic() {
       this.wantMusic = !this.wantMusic;
+    }, */
+    deleteEverything(){
+      if (window.confirm("Do you want to really delete everything?")) {
+        localStorage.clear();
+        location.reload();
+      }
     },
     saveOnLocalStorage() {
       /* if(parseInt(document.getElementById("focusTimeMinutes").value) === 0){
 console.log("asd")
       } */
 
-      const focusTimeSeconds = parseInt(document.getElementById("focusTimeMinutes").value * 60) + parseInt(document.getElementById("focusTimeSeconds").value);
-      const lilBreakSeconds = parseInt(document.getElementById("lilBreakMinutes").value * 60) + parseInt(document.getElementById("lilBreakSeconds").value);
-      const bigBreakSeconds = parseInt(document.getElementById("bigBreakMinutes").value * 60) + parseInt(document.getElementById("bigBreakSeconds").value);
+      const focusTimeSeconds =
+        parseInt(document.getElementById("focusTimeMinutes").value * 60) +
+        parseInt(document.getElementById("focusTimeSeconds").value);
+      const lilBreakSeconds =
+        parseInt(document.getElementById("lilBreakMinutes").value * 60) +
+        parseInt(document.getElementById("lilBreakSeconds").value);
+      const bigBreakSeconds =
+        parseInt(document.getElementById("bigBreakMinutes").value * 60) +
+        parseInt(document.getElementById("bigBreakSeconds").value);
       const audio2LocalStorage = {
         audio: this.audio.audio,
         volume: this.audio.volume / 100,
-      }
+      };
 
-      //console.log(document.getElementById("musicLink").value);
-      console.log(this.audio);
-      
       //save in localStorage
       localStorage.focusTime = focusTimeSeconds;
       localStorage.lilBreak = lilBreakSeconds;
       localStorage.bigBreak = bigBreakSeconds;
       localStorage.audio = JSON.stringify(audio2LocalStorage);
-      localStorage.wantsMusic = this.wantMusic;
+
+      //force to reload the page to apply new settings
+      location.reload();
     },
   },
 };
 </script>
 
 <style scoped>
-.modal-overlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -215,20 +257,24 @@ console.log("asd")
 .modal {
   text-align: center;
   background-color: white;
-  height: 500px;
+  height: 380px;
   width: 500px;
   margin-top: 10%;
   padding: 30px 0;
   border-radius: 20px;
 }
 
-.closeModal{
+.closeModal {
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-h1{
-  padding-bottom: 30px;;
+.header{
+  padding-bottom: 30px;
 }
 
 .close {
@@ -254,11 +300,34 @@ p {
   color: white;
   font-size: 14px;
   border-radius: 16px;
-  margin-top: 50px;
+  margin-top: 28px;
 }
 
-.innerOptionMusicVolume{
+.innerOption{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+.innerOptionMusicVolume {
   border: 0px;
   width: 40px;
 }
+
+.soundEffectOptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.dangerText{
+  color:#ac003e;
+  text-decoration: underline;
+  margin: 0px;
+}
+
+
 </style>

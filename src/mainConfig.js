@@ -1,12 +1,11 @@
 module.exports = {
-    focusTime: 3,
+    focusTime: 1500,
     lilBreak: 300,
     bigBreak: 900,
     lilBreaksCounter: 0,
     maxLilBreaks: 3,
     startState: 'focusTime',
     currentState: 'focusTime',
-    wantsMusic: true,
     tasks: '[]',
     currentTask: "",
     audio:{

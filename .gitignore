@@ -3,7 +3,7 @@ node_modules
 /dist
 
 usedLinks.txt
-
+gh-pages.txt
 
 # local env files
 .env.local

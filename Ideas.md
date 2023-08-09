@@ -1,7 +1,7 @@
-->Ao acabar tempo ou ao dar skip adicionar 1 ao intervalo feito da task
+# Dar para meter sem nenhuma a trabalhar
 
-->Mudar tempo automaticamente quando um acaba
+# Fazer settings para tasks
 
 Acabar página settings
 
-Fazer popUp de erro
+Fazer popUp

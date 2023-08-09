@@ -1,7 +1,11 @@
 <template>
   <div class="taskContainer">
     <div class="taskContent">
-      <div class="taskBody" v-if="task.checked" style="text-decoration: line-through">
+      <div
+        class="taskBody"
+        v-if="task.checked"
+        style="text-decoration: line-through"
+      >
         <span v-if="task.working" style="font-weight: bold">{{
           task.description
         }}</span>
@@ -20,12 +24,18 @@
 
     <div class="taskActions">
       <button>
-        <span v-if="task.working" @click="$emit('changeWorking', task)"
+        <span v-if="task.working" @click="makeTask(task)"
           >✏️</span
         >
-        <span v-else @click="$emit('changeWorking', task)">📚</span>
+        <span v-else @click="makeTask(task)">📚</span><!-- $emit('changeWorking', task) -->
       </button>
-      <button>
+      <TaskSettingsModal
+        v-show="showSettingsModal"
+        @close-modal="showSettingsModal = false"
+        taskId=''
+        taskDescription=""
+      />
+      <button @click="showSettingsModal = true">
         <span>⚙️</span>
       </button>
       <button @click="$emit('remove', task)">❌</button>
@@ -34,8 +44,18 @@
 </template>
 
 <script>
+import TaskSettingsModal from "@/components/TaskSettingsModal.vue";
+
 export default {
   name: "TaskComponent",
+  components: {
+    TaskSettingsModal,
+  },
+  data: () => {
+    return {
+      showSettingsModal: false,
+    };
+  },
 
   props: {
     task: {
@@ -45,7 +65,8 @@ export default {
   },
   methods: {
     makeTask(task) {
-      this.$emit("submitCurrentTask", task);
+      console.log(this)
+      this.$emit("changeWorking", task);
     },
   },
 };
