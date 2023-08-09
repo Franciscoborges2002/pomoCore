@@ -41,7 +41,12 @@
         <div class="timer">
           {{ timeDisplay }}
         </div>
-        <div class="currentTask">working on: {{ currentTask.description }}</div>
+        <div class="currentTask">
+          working on:<span v-if="currentTask">
+            {{ currentTask.description }}
+          </span>
+          <span v-else>something</span>
+        </div>
       </div>
       <div class="tasks corePart right">
         <div class="tasksHeader">
@@ -91,10 +96,7 @@
 import { ref } from "vue";
 
 import Task from "@/components/Task.vue";
-import SettingsMenu from "@/components/SettingsMenu.vue";
 import SettingsModal from "@/components/SettingsModal.vue";
-import TaskSettingsModal from "@/components/TaskSettingsModal.vue";
-//import ModalPopUp from "@/components/ModalPopUp.vue";
 
 import TimeStates from "@/enums/TimeStates";
 const config = require("@/mainConfig.js");
@@ -104,7 +106,6 @@ export default {
   components: {
     Task,
     SettingsModal,
-    TaskSettingsModal,
   },
   setup() {
     const popupTriggers = ref({
@@ -117,7 +118,6 @@ export default {
     };
 
     return {
-      SettingsMenu,
       popupTriggers,
       togglePopup,
     };
@@ -255,7 +255,7 @@ export default {
       this.task = { checked: false, intervalsMade: 0 };
     },
     removeTask(task) {
-      if (window.confirm("Do you want to really delete the task?")) {
+      if (window.confirm("Do you really want to delete the task?")) {
         let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
         //verify the current Task
         if (this.currentTask.id === task.id) {
@@ -327,10 +327,12 @@ export default {
       ); //get the index of the object
 
       if (localStorageIndexTasks > -1) {
-        /* for(let i = 0; i < localStorageTasks.length; i++){
-
-        } */
         const item = localStorageTasks[localStorageIndexTasks];
+
+        if(!item.checked &&((item.intervalsMade + 1) >= item.totalIntervals)){
+          item.checked = true;
+        }
+
         item.intervalsMade = item.intervalsMade + 1;
 
         localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
@@ -493,10 +495,6 @@ footer {
   justify-content: center;
 }
 
-iframe {
-  display: none;
-}
-
 .tasks {
   width: 330px;
   height: 400px;
@@ -515,9 +513,11 @@ iframe {
 }
 
 .tasksHeader h2 {
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-content: center;
   justify-content: center;
+  align-items: center;
 }
 
 .tasks .tasksBody {
@@ -570,14 +570,6 @@ iframe {
   margin: 0px;
 }
 
-.tasks .tasksForm button:hover {
-  background-color: #c7c7c7;
-}
-
-.tasks .tasksForm button:active {
-  background-color: #a1a1a1;
-}
-
 .timerContainer {
   display: flex;
   flex-direction: column;
@@ -625,11 +617,11 @@ button {
 }
 
 button:hover {
-  background-color: #c7c7c7;
+  background-color: #d1d1d1;
 }
 
 button:active {
-  background-color: #a1a1a1;
+  background-color: #c7c7c7;
 }
 
 img {
@@ -675,9 +667,12 @@ img {
 .linkGitHub {
   width: 25px;
   height: 25px;
+  position: absolute;
+  right: 10px;
+  transition: right 1s;
 }
 
 .linkGitHub:hover {
-  transform: rotate(5px);
+  right: 12px;
 }
 </style>

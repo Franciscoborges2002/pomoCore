@@ -24,16 +24,14 @@
 
     <div class="taskActions">
       <button>
-        <span v-if="task.working" @click="makeTask(task)"
-          >✏️</span
-        >
-        <span v-else @click="makeTask(task)">📚</span><!-- $emit('changeWorking', task) -->
+        <span v-if="task.working" @click="makeTask(task)">✏️</span>
+        <span v-else @click="makeTask(task)">📚</span
+        ><!-- $emit('changeWorking', task) -->
       </button>
       <TaskSettingsModal
         v-show="showSettingsModal"
         @close-modal="showSettingsModal = false"
-        taskId=''
-        taskDescription=""
+        :task="this.task"
       />
       <button @click="showSettingsModal = true">
         <span>⚙️</span>
@@ -65,7 +63,7 @@ export default {
   },
   methods: {
     makeTask(task) {
-      console.log(this)
+      console.log(this);
       this.$emit("changeWorking", task);
     },
   },
@@ -73,6 +71,21 @@ export default {
 </script>
 
 <style scoped>
+button {
+  border: 0px;
+  cursor: pointer;
+  background-color: rgba(195, 195, 195, 0.5);
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: rgba(195, 195, 195, 0.7);
+}
+
+button:active {
+  background-color: rgb(134, 134, 134);
+}
+
 .taskContainer {
   display: flex;
   flex-direction: row;
@@ -88,7 +101,7 @@ export default {
 .taskActions {
   display: flex;
   flex-direction: row;
-  gap: 2%;
+  gap: 5px;
   justify-content: center;
   align-items: center;
 }

@@ -52,6 +52,16 @@
         </div>
       </div>
       <div class="innerOption">
+        <h2>Little Break Intervals:</h2>
+        <input
+            type="number"
+            min="0"
+            class="innerOptionChanger"
+            id="lilBreakIntervals"
+            :value="returnLilBreakInterval()"
+          />
+      </div>
+      <div class="innerOption">
         <h2>Big Break:</h2>
         <div>
           <input
@@ -198,10 +208,13 @@ export default {
     returnBigBreak() {
       return localStorage.bigBreak;
     },
-    returnWantsMusic() {
+    returnLilBreakInterval(){
+      return localStorage.maxLilBreaks;
+    },
+    /*returnWantsMusic() {
       return localStorage.wantsMusic;
     },
-    /* wantsMusic() {
+     wantsMusic() {
       this.wantMusic = !this.wantMusic;
     }, */
     deleteEverything(){
@@ -211,10 +224,6 @@ export default {
       }
     },
     saveOnLocalStorage() {
-      /* if(parseInt(document.getElementById("focusTimeMinutes").value) === 0){
-console.log("asd")
-      } */
-
       const focusTimeSeconds =
         parseInt(document.getElementById("focusTimeMinutes").value * 60) +
         parseInt(document.getElementById("focusTimeSeconds").value);
@@ -228,12 +237,14 @@ console.log("asd")
         audio: this.audio.audio,
         volume: this.audio.volume / 100,
       };
+      const lilBreakIntervals = parseInt(document.getElementById("lilBreakIntervals").value);
 
       //save in localStorage
       localStorage.focusTime = focusTimeSeconds;
       localStorage.lilBreak = lilBreakSeconds;
       localStorage.bigBreak = bigBreakSeconds;
       localStorage.audio = JSON.stringify(audio2LocalStorage);
+      localStorage.maxLilBreaks = lilBreakIntervals;
 
       //force to reload the page to apply new settings
       location.reload();
@@ -257,7 +268,7 @@ console.log("asd")
 .modal {
   text-align: center;
   background-color: white;
-  height: 380px;
+  height: 410px;
   width: 500px;
   margin-top: 10%;
   padding: 30px 0;
@@ -265,21 +276,16 @@ console.log("asd")
 }
 
 .closeModal {
+  margin-left: 10px;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 }
 
 .header{
   padding-bottom: 30px;
-}
-
-.close {
-  margin: 10% 0 0 16px;
-  cursor: pointer;
 }
 
 h6 {
@@ -294,7 +300,7 @@ p {
 }
 
 .saveSettings {
-  background-color: #ac003e;
+  background-color: #727272;
   width: 150px;
   height: 40px;
   color: white;
@@ -328,6 +334,4 @@ p {
   text-decoration: underline;
   margin: 0px;
 }
-
-
 </style>
