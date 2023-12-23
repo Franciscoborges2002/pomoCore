@@ -10,10 +10,10 @@
           return (0, o.wg)(), (0, o.iD)("div", s, [(0, o.Wm)(l)]);
         }
         var r = n(139),
-          l = n.p + "img/playButton.d5ecdf60.svg",
-          c = n.p + "img/pauseButton.bf50f2ea.svg",
-          u = n.p + "img/skipButton.744ae4aa.svg",
-          d = n.p + "img/settingsButton.4b039059.svg";
+          l = n.p + "../img/playButton.d5ecdf60.svg",
+          c = n.p + "../img/pauseButton.bf50f2ea.svg",
+          u = n.p + "../img/skipButton.744ae4aa.svg",
+          d = n.p + "../img/settingsButton.4b039059.svg";
         const g = (e) => (
             (0, o.dD)("data-v-130c794c"), (e = e()), (0, o.Cn)(), e
           ),
@@ -1146,7 +1146,7 @@
         };
       },
       561: function (e, t, n) {
-        var a = { "./sound1.mp3": 404, "./sound2.mp3": 423 };
+        var a = { "../media/sound1.mp3": 404, "../media/sound2.mp3": 423 };
         function o(e) {
           var t = s(e);
           return n(t);
@@ -1167,11 +1167,11 @@
       },
       404: function (e, t, n) {
         "use strict";
-        e.exports = n.p + "media/sound1.0ee4792f.mp3";
+        e.exports = n.p + "../media/sound1.0ee4792f.mp3";
       },
       423: function (e, t, n) {
         "use strict";
-        e.exports = n.p + "media/sound2.da32e805.mp3";
+        e.exports = n.p + "../media/sound2.da32e805.mp3";
       },
     },
     t = {};
