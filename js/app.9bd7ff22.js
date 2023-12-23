@@ -1,2 +1,1270 @@
-(function(){var e={415:function(e,t,n){"use strict";var a=n(242),o=n(396);const s={id:"app"};function i(e,t,n,a,i,r){const l=(0,o.up)("Home");return(0,o.wg)(),(0,o.iD)("div",s,[(0,o.Wm)(l)])}var r=n(139),l=n.p+"img/playButton.d5ecdf60.svg",c=n.p+"img/pauseButton.bf50f2ea.svg",u=n.p+"img/skipButton.744ae4aa.svg",d=n.p+"img/settingsButton.4b039059.svg";const g=e=>((0,o.dD)("data-v-130c794c"),e=e(),(0,o.Cn)(),e),k={class:"container"},m=g((()=>(0,o._)("div",{id:"header"},[(0,o._)("h1",null,[(0,o._)("a",{href:"https://en.wikipedia.org/wiki/Pomodoro_Technique",target:"_blank"},"pomo"),(0,o.Uk)("Core ")])],-1))),p={class:"main"},v={class:"buttons corePart left"},S=g((()=>(0,o._)("p",{class:"stateMain"},"normal",-1))),h={key:0,src:l},f={key:1,src:c},B=g((()=>(0,o._)("img",{src:u},null,-1))),_=[B],T=g((()=>(0,o._)("p",{class:"stateSettings"},"normal",-1))),w=g((()=>(0,o._)("img",{src:d},null,-1))),b=[T,w],y={class:"timerContainer corePart center"},I={class:"timer"},O={class:"currentTask"},M={class:"tasks corePart right"},C=g((()=>(0,o._)("div",{class:"tasksHeader"},[(0,o._)("h2",null,"Tasks")],-1))),x={class:"tasksBody"},D={class:"taskList"},N=g((()=>(0,o._)("span",null,"Breaks:",-1))),E=g((()=>(0,o._)("button",null,"+",-1))),J=g((()=>(0,o._)("footer",null,[(0,o.Uk)(" Made with 💜 by "),(0,o._)("a",{href:"https://github.com/Franciscoborges2002",target:"_blank"},"Francisco Borges"),(0,o.Uk)(". ")],-1)));function L(e,t,n,s,i,l){const c=(0,o.up)("SettingsModal"),u=(0,o.up)("task");return(0,o.wg)(),(0,o.iD)("div",k,[m,(0,o._)("div",p,[(0,o._)("div",v,[(0,o.wy)((0,o.Wm)(c,{onCloseModal:t[0]||(t[0]=t=>e.showSettingsModal=!1)},null,512),[[a.F8,e.showSettingsModal]]),(0,o._)("button",{onClick:t[1]||(t[1]=(...e)=>l.handleTimeButton&&l.handleTimeButton(...e))},[S,e.playButtonShow?((0,o.wg)(),(0,o.iD)("img",h)):((0,o.wg)(),(0,o.iD)("img",f))]),(0,o._)("button",{onClick:t[2]||(t[2]=(...e)=>l.handleSkipButton&&l.handleSkipButton(...e))},_),(0,o._)("button",{onClick:t[3]||(t[3]=t=>e.showSettingsModal=!0)},b)]),(0,o._)("div",y,[(0,o._)("div",I,(0,r.zw)(l.timeDisplay),1),(0,o._)("div",O,"working on: "+(0,r.zw)(e.currentTask.description),1)]),(0,o._)("div",M,[C,(0,o._)("div",x,[(0,o._)("div",D,[((0,o.wg)(!0),(0,o.iD)(o.HY,null,(0,o.Ko)(e.tasks,(e=>((0,o.wg)(),(0,o.j4)(u,{class:"individualTask",key:e.id,onRemove:l.removeTask,onChangeWorking:l.changeWorking,task:e},null,8,["onRemove","onChangeWorking","task"])))),128))]),(0,o._)("form",{class:"tasksForm",onSubmit:t[6]||(t[6]=(0,a.iM)((t=>l.addTask(e.task)),["prevent"]))},[(0,o.wy)((0,o._)("input",{class:"taskName",type:"text",placeholder:"Task name","onUpdate:modelValue":t[4]||(t[4]=t=>e.task.description=t)},null,512),[[a.nr,e.task.description]]),N,(0,o.wy)((0,o._)("input",{class:"totalIntervals",type:"number",min:"1","onUpdate:modelValue":t[5]||(t[5]=t=>e.task.totalIntervals=t)},null,512),[[a.nr,e.task.totalIntervals]]),E],32)])])]),J])}var U=n(870);const P=e=>((0,o.dD)("data-v-4a945c80"),e=e(),(0,o.Cn)(),e),F={class:"taskContainer"},z={class:"taskContent"},W={key:0,class:"taskBody",style:{"text-decoration":"line-through"}},j={key:0,style:{"font-weight":"bold"}},$={key:1,style:{"font-weight":"normal"}},H={key:1,class:"taskBody",style:{"text-decoration":"normal"}},Z={key:0,style:{"font-weight":"bold"}},R={key:1,style:{"font-weight":"normal"}},V={class:"taskActions"},q=P((()=>(0,o._)("button",null,[(0,o._)("span",null,"⚙️")],-1)));function A(e,t,n,a,s,i){return(0,o.wg)(),(0,o.iD)("div",F,[(0,o._)("div",z,[n.task.checked?((0,o.wg)(),(0,o.iD)("div",W,[n.task.working?((0,o.wg)(),(0,o.iD)("span",j,(0,r.zw)(n.task.description),1)):((0,o.wg)(),(0,o.iD)("span",$,(0,r.zw)(n.task.description),1)),(0,o.Uk)(" ("+(0,r.zw)(n.task.intervalsMade)+" / "+(0,r.zw)(n.task.totalIntervals)+") ",1)])):((0,o.wg)(),(0,o.iD)("div",H,[n.task.working?((0,o.wg)(),(0,o.iD)("span",Z,(0,r.zw)(n.task.description),1)):((0,o.wg)(),(0,o.iD)("span",R,(0,r.zw)(n.task.description),1)),(0,o.Uk)(" ("+(0,r.zw)(n.task.intervalsMade)+" / "+(0,r.zw)(n.task.totalIntervals)+") ",1)]))]),(0,o._)("div",V,[(0,o._)("button",null,[n.task.working?((0,o.wg)(),(0,o.iD)("span",{key:0,onClick:t[0]||(t[0]=t=>e.$emit("changeWorking",n.task))},"✏️")):((0,o.wg)(),(0,o.iD)("span",{key:1,onClick:t[1]||(t[1]=t=>e.$emit("changeWorking",n.task))},"📚"))]),q,(0,o._)("button",{onClick:t[2]||(t[2]=t=>e.$emit("remove",n.task))},"❌")])])}var Y={name:"TaskComponent",props:{task:{type:Object,required:!0}},methods:{makeTask(e){this.$emit("submitCurrentTask",e)}}},K=n(89);const X=(0,K.Z)(Y,[["render",A],["__scopeId","data-v-4a945c80"]]);var G=X;const Q={class:"popup"},ee={class:"popup-inner"},te=(0,o._)("div",{class:"header"},[(0,o._)("h1",null,"Settings"),(0,o._)("span")],-1),ne={class:"innerOption"},ae=(0,o._)("h2",null,"Focus Time:",-1),oe=["value"],se={class:"innerOption"},ie=(0,o._)("h2",null,"Litle Break:",-1),re=["value"],le={class:"innerOption"},ce=(0,o._)("h2",null,"Big Break:",-1),ue=["value"],de={class:"innerOption"},ge=(0,o._)("h2",null,"Want Music",-1),ke=["value"];function me(e,t,n,a,s,i){return(0,o.wg)(),(0,o.iD)("div",Q,[(0,o._)("div",ee,[te,(0,o._)("div",ne,[ae,(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"focusTime",value:i.returnFocusTime()},null,8,oe)]),(0,o._)("div",se,[ie,(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"lilBreak",value:e.localStorage.focusTime},null,8,re)]),(0,o._)("div",le,[ce,(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"bigBreak",value:e.localStorage.focusTime},null,8,ue)]),(0,o._)("div",de,[ge,(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"bigBreak",value:e.localStorage.focusTime},null,8,ke)]),(0,o._)("button",{class:"closeSettings",onClick:t[0]||(t[0]=t=>e.closeSettingsMenu())},"Save!")])])}const pe={class:"popup"},ve={class:"popup-inner"};function Se(e,t,n,a,s,i){return(0,o.wg)(),(0,o.iD)("div",pe,[(0,o._)("div",ve,[(0,o.WI)(e.$slots,"default"),(0,o._)("button",{class:"popup-close",onClick:t[0]||(t[0]=e=>n.TogglePopup())}," Close Popup ")])])}var he={props:["TogglePopup"]};const fe=(0,K.Z)(he,[["render",Se]]);var Be=fe,_e={setup(){const e=(0,U.iH)({buttonTrigger:!1}),t=t=>{e.value[t]=!e.value[t]};return{Popup:Be,popupTriggers:e,TogglePopup:t}},beforeCreate(){document.getElementsByClassName("bigBreak").value="16"},methods:{returnFocusTime(){return localStorage.focusTime},returnLilBreak(){return localStorage.lilBreak},returnBigBreak(){return localStorage.bigBreak},saveOnLocalStorage(){localStorage.focusTime=document.getElementById("focusTime").value,localStorage.lilBreak=document.getElementById("lilBreak").value,localStorage.bigBreak=document.getElementById("bigBreak").value,console.log("Settings were saved!")},appearPopUp(){}}};const Te=(0,K.Z)(_e,[["render",me]]);var we=Te;const be=e=>((0,o.dD)("data-v-3cd156c4"),e=e(),(0,o.Cn)(),e),ye=be((()=>(0,o._)("div",{class:"header"},[(0,o._)("h1",null,"Settings:")],-1))),Ie=be((()=>(0,o._)("span",null,null,-1))),Oe={class:"innerOption"},Me=be((()=>(0,o._)("h2",null,"Focus Time:",-1))),Ce=["value"],xe=["value"],De={class:"innerOption"},Ne=be((()=>(0,o._)("h2",null,"Litle Break:",-1))),Ee=["value"],Je=["value"],Le={class:"innerOption"},Ue=be((()=>(0,o._)("h2",null,"Big Break:",-1))),Pe=["value"],Fe=["value"],ze={class:"innerOption"},We=be((()=>(0,o._)("h2",null,"Sound Effect",-1))),je=be((()=>(0,o._)("option",null,"sound1",-1))),$e=be((()=>(0,o._)("option",null,"sound2",-1))),He=[je,$e],Ze={class:"innerOption"},Re=be((()=>(0,o._)("h2",null,"Want Music",-1))),Ve=["checked"],qe={key:0,class:"innerOption"},Ae=be((()=>(0,o._)("h2",null,"Provide a yt music:",-1))),Ye=be((()=>(0,o._)("input",{type:"text",id:"musicLink"},null,-1))),Ke=[Ae,Ye],Xe=be((()=>(0,o._)("div",{class:"close"},null,-1)));function Ge(e,t,n,s,i,r){return(0,o.wg)(),(0,o.iD)("div",{class:"modal-overlay",onClick:t[6]||(t[6]=t=>e.$emit("close-modal"))},[(0,o._)("div",{class:"modal",onClick:t[5]||(t[5]=(0,a.iM)((()=>{}),["stop"]))},[(0,o._)("button",{class:"closeModal",onClick:t[0]||(t[0]=t=>e.$emit("close-modal"))},"X"),ye,Ie,(0,o._)("div",Oe,[Me,(0,o._)("div",null,[(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"focusTimeMinutes",value:r.returnFocusTimeMinutes()},null,8,Ce),(0,o.Uk)(" : "),(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"focusTimeSeconds",value:r.returnFocusTimeSeconds()},null,8,xe)])]),(0,o._)("div",De,[Ne,(0,o._)("div",null,[(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"lilBreakMinutes",value:r.returnLilBreakMinutes()},null,8,Ee),(0,o.Uk)(" : "),(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"lilBreakSeconds",value:r.returnLilBreakSeconds()},null,8,Je)])]),(0,o._)("div",Le,[Ue,(0,o._)("div",null,[(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"bigBreakMinutes",value:r.returnBigBreakMinutes()},null,8,Pe),(0,o.Uk)(" : "),(0,o._)("input",{type:"number",min:"0",max:"1440",class:"innerOptionChanger",id:"bigBreakSeconds",value:r.returnBigBreakSeconds()},null,8,Fe)])]),(0,o._)("div",ze,[We,(0,o._)("div",null,[(0,o.wy)((0,o._)("select",{"onUpdate:modelValue":t[1]||(t[1]=t=>e.audio.audio=t)},He,512),[[a.bM,e.audio.audio]]),(0,o.wy)((0,o._)("input",{type:"number",min:"0",max:"100",class:"innerOptionMusicVolume",id:"bigBreakMinutes","onUpdate:modelValue":t[2]||(t[2]=t=>e.audio.volume=t)},null,512),[[a.nr,e.audio.volume]]),(0,o.Uk)(" % ")])]),(0,o._)("div",Ze,[Re,(0,o._)("input",{type:"checkbox",checked:e.wantMusic,onClick:t[3]||(t[3]=e=>r.wantsMusic())},null,8,Ve)]),e.wantMusic?((0,o.wg)(),(0,o.iD)("div",qe,Ke)):(0,o.kq)("",!0),(0,o._)("button",{class:"saveSettings",onClick:t[4]||(t[4]=e=>r.saveOnLocalStorage())},"Save!")]),Xe])}var Qe={data:()=>{const e=JSON.parse(localStorage.audio);return{audio:{audio:e.audio,volume:100*e.volume},wantMusic:JSON.parse(localStorage.wantsMusic)}},methods:{returnFocusTimeMinutes(){return localStorage.focusTime<60?0:localStorage.focusTime/60},returnFocusTimeSeconds(){return localStorage.focusTime<60?localStorage.focusTime:localStorage.focusTime%60},returnLilBreak(){return localStorage.lilBreak},returnLilBreakMinutes(){return localStorage.lilBreak<60?0:localStorage.lilBreak/60},returnLilBreakSeconds(){return localStorage.lilBreak<60?localStorage.lilBreak:localStorage.lilBreak%60},returnBigBreakMinutes(){return localStorage.bigBreak<60?0:localStorage.bigBreak/60},returnBigBreakSeconds(){return localStorage.bigBreak<60?localStorage.bigBreak:localStorage.bigBreak%60},returnBigBreak(){return localStorage.bigBreak},returnWantsMusic(){return localStorage.wantsMusic},wantsMusic(){this.wantMusic=!this.wantMusic},saveOnLocalStorage(){const e=parseInt(60*document.getElementById("focusTimeMinutes").value)+parseInt(document.getElementById("focusTimeSeconds").value),t=parseInt(60*document.getElementById("lilBreakMinutes").value)+parseInt(document.getElementById("lilBreakSeconds").value),n=parseInt(60*document.getElementById("bigBreakMinutes").value)+parseInt(document.getElementById("bigBreakSeconds").value),a={audio:this.audio.audio,volume:this.audio.volume/100};console.log(this.audio),localStorage.focusTime=e,localStorage.lilBreak=t,localStorage.bigBreak=n,localStorage.audio=JSON.stringify(a),localStorage.wantsMusic=this.wantMusic}}};const et=(0,K.Z)(Qe,[["render",Ge],["__scopeId","data-v-3cd156c4"]]);var tt=et;const nt={class:"modalOustide"},at={class:"modalContainer"},ot=(0,o._)("div",{class:"modalHead"},[(0,o._)("h1",null,"asd")],-1),st=(0,o._)("div",{class:"separator"},null,-1),it={class:"modalBody"};function rt(e,t,n,a,s,i){return(0,o.wg)(),(0,o.iD)("div",nt,[(0,o._)("div",at,[ot,st,(0,o._)("div",it,[(0,o._)("p",null,(0,r.zw)(n.description),1)])])])}var lt={props:["title","description"]};const ct=(0,K.Z)(lt,[["render",rt]]);var ut=ct;const dt=Object.freeze({focus:"focusTime",littleBreak:"lilBreakTime",bigBreak:"bigBreakTime"});var gt=dt;const kt=n(686);var mt={name:"HomeComponent",components:{Task:G,SettingsModal:tt,ModalPopUp:ut},setup(){const e=(0,U.iH)({buttonTrigger:!1}),t=t=>{console.log(e.value[t]),e.value[t]=!e.value[t]};return{SettingsMenu:we,popupTriggers:e,togglePopup:t}},data:()=>{const e=localStorage.focusTime,t=localStorage.lilBreak,n=localStorage.bigBreak,a=localStorage.currentState,o=localStorage.currentTimeInSeconds;var s,i="";const r=JSON.parse(localStorage.getItem("audio"));return console.log(r),console.log(localStorage.currentState),a===gt.focus&&(s=e),a===gt.littleBreak&&(s=t),a===gt.bigBreak&&(s=n),s>o&&(s=o),localStorage.currentTask&&(i=JSON.parse(localStorage.currentTask)),{currentTimeInSeconds:s,currentState:a,focusTime:e,lilBreakTime:t,bigBreakTime:n,timeRunning:!1,playButtonShow:!0,tasks:JSON.parse(localStorage.tasks),task:{checked:!1,intervalsMade:0,totalIntervals:1},audio:{audio:r.audio,volume:r.volume},currentTask:i,showSettingsModal:!1}},methods:{handleSettingsButton(){},handleTimeButton(){this.playButtonShow=!this.playButtonShow,this.timeRunning?(this.stopClock(),this.timeRunning=!1,localStorage.setItem("currentTimeInSeconds",this.currentTimeInSeconds)):(this.playClock(),this.timeRunning=!0)},handleSkipButton(){this.passCurrentState()},playClock(){this.interval=setInterval((()=>{0!=this.currentTimeInSeconds&&(this.currentTimeInSeconds-=1)}),1e3)},stopClock(){clearInterval(this.interval)},addTask(e){let t=JSON.parse(localStorage.getItem("tasks"));if(e.id=Date.now(),""===e.description||void 0===e.description)return void alert("You need to add a name for the task!");for(let a=0;a<t.length;a++)if(t[a].description===e.description)return void alert("Task name already exists!");if(!e.totalIntervals)return void alert("Make sure you insert the number os intervals!");let n={id:e.id,description:e.description,checked:e.checked,totalIntervals:e.totalIntervals,intervalsMade:0};n.working=t<1,t.push(n),localStorage.setItem("tasks",JSON.stringify(t)),""===this.currentTask&&(localStorage.currentTask=JSON.stringify(n),this.currentTask=n),this.tasks.push(n),this.task={checked:!1,intervalsMade:0},console.log(this.tasks)},removeTask(e){let t=JSON.parse(localStorage.getItem("tasks"));this.currentTask.id===e.id&&(localStorage.setItem("currentTask","{}"),this.currentTask=""),console.log(this.currentTask);const n=t.findIndex((t=>t.id===e.id));n>-1&&t.splice(n,1),localStorage.setItem("tasks",JSON.stringify(t));const a=this.tasks.findIndex((t=>t.id===e.id));a>-1&&this.tasks.splice(a,1)},changeWorking(e){const t=JSON.parse(localStorage.getItem("tasks"));let n;if(console.log(this.currentTask),this.currentTask&&(console.log("TESTEEEE"),n=t.findIndex((e=>e.id===this.currentTask.id)),console.log(n),n>-1)){t[n].working=!1;let e=this.tasks[n];e.working=!1,console.log(this.tasks),console.log(t)}const a=t.findIndex((t=>t.id===e.id));if(console.log(a),a>-1){const n=!t[a].working;t[a].working=n,e.working=!0}localStorage.setItem("tasks",JSON.stringify(t)),localStorage.setItem("currentTask",JSON.stringify(e)),this.currentTask=e},addInterval(e){console.log(e);let t=JSON.parse(localStorage.getItem("tasks"));const n=t.findIndex((t=>t.id===e.id));if(console.log(n),console.log(t),n>-1){const e=t[n];e.intervalsMade=e.intervalsMade+1,localStorage.setItem("tasks",JSON.stringify(t))}console.log(t);const a=this.tasks.findIndex((t=>t.id===e.id));if(a>-1){const e=this.tasks[a];e.intervalsMade=e.intervalsMade+1}},passCurrentState(){const e=localStorage.getItem("currentState"),t=parseInt(localStorage.getItem("lilBreaksCounter")),n=parseInt(localStorage.getItem("maxLilBreaks")),a=this.currentTask;if(e===gt.focus)if(t<n){localStorage.setItem("currentState",gt.littleBreak),this.currentState=gt.littleBreak;let e=localStorage.lilBreak;this.currentTimeInSeconds=e,localStorage.setItem("lilBreaksCounter",t+1)}else{localStorage.setItem("currentState",gt.bigBreak),this.currentState=gt.bigBreak;let e=localStorage.bigBreak;this.currentTimeInSeconds=e,localStorage.setItem("lilBreaksCounter",0)}else{localStorage.setItem("currentState",gt.focus),this.currentState=gt.focus;let e=localStorage.focusTime;this.currentTimeInSeconds=e}const o=this.tasks.findIndex((e=>e.id===a.id));console.log(o),o>-1&&this.addInterval(this.tasks[o]),console.log(this)}},computed:{timeDisplay(){let e,t,a,o;if(this.currentTimeInSeconds<60?(a=0,o=this.currentTimeInSeconds,e="00",t=("0"+this.currentTimeInSeconds).slice(-2)):(a=parseInt(this.currentTimeInSeconds/60),o=this.currentTimeInSeconds%60,e=("0"+a).slice(-2),t=("0"+o).slice(-2)),0===a&&0===o){this.passCurrentState();var s=new Audio(n(561)(`./${this.audio.audio}.mp3`));s.volume=.05,s.play()}return`${e}:${t}`}},beforeCreate(){"undefined"!==typeof Storage?localStorage.focusTime?console.log("Já tem registado"):(localStorage.focusTime=kt.focusTime,localStorage.lilBreak=kt.lilBreak,localStorage.bigBreak=kt.bigBreak,localStorage.currentState=kt.startState,localStorage.lilBreaksCounter=kt.lilBreaksCounter,localStorage.wantsMusic=kt.wantsMusic,localStorage.tasks=kt.tasks,localStorage.currentTask=kt.currentTask,localStorage.maxLilBreaks=kt.maxLilBreaks,localStorage.audio=JSON.stringify(kt.audio)):console.log("Não existe suporte ao localStorage")}};const pt=(0,K.Z)(mt,[["render",L],["__scopeId","data-v-130c794c"]]);var vt=pt,St={name:"App",components:{Home:vt},watch:{items:{handler(e,t){console.log(t+" --\x3e "+e)},deep:!0}}};const ht=(0,K.Z)(St,[["render",i]]);var ft=ht;(0,a.ri)(ft).mount("#app")},686:function(e){e.exports={focusTime:3,lilBreak:300,bigBreak:900,lilBreaksCounter:0,maxLilBreaks:3,startState:"focusTime",currentState:"focusTime",wantsMusic:!0,tasks:"[]",currentTask:"",audio:{audio:"sound2",volume:.1}}},561:function(e,t,n){var a={"./sound1.mp3":404,"./sound2.mp3":423};function o(e){var t=s(e);return n(t)}function s(e){if(!n.o(a,e)){var t=new Error("Cannot find module '"+e+"'");throw t.code="MODULE_NOT_FOUND",t}return a[e]}o.keys=function(){return Object.keys(a)},o.resolve=s,e.exports=o,o.id=561},404:function(e,t,n){"use strict";e.exports=n.p+"media/sound1.0ee4792f.mp3"},423:function(e,t,n){"use strict";e.exports=n.p+"media/sound2.da32e805.mp3"}},t={};function n(a){var o=t[a];if(void 0!==o)return o.exports;var s=t[a]={exports:{}};return e[a](s,s.exports,n),s.exports}n.m=e,function(){var e=[];n.O=function(t,a,o,s){if(!a){var i=1/0;for(u=0;u<e.length;u++){a=e[u][0],o=e[u][1],s=e[u][2];for(var r=!0,l=0;l<a.length;l++)(!1&s||i>=s)&&Object.keys(n.O).every((function(e){return n.O[e](a[l])}))?a.splice(l--,1):(r=!1,s<i&&(i=s));if(r){e.splice(u--,1);var c=o();void 0!==c&&(t=c)}}return t}s=s||0;for(var u=e.length;u>0&&e[u-1][2]>s;u--)e[u]=e[u-1];e[u]=[a,o,s]}}(),function(){n.d=function(e,t){for(var a in t)n.o(t,a)&&!n.o(e,a)&&Object.defineProperty(e,a,{enumerable:!0,get:t[a]})}}(),function(){n.g=function(){if("object"===typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(e){if("object"===typeof window)return window}}()}(),function(){n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)}}(),function(){n.p="/"}(),function(){var e={143:0};n.O.j=function(t){return 0===e[t]};var t=function(t,a){var o,s,i=a[0],r=a[1],l=a[2],c=0;if(i.some((function(t){return 0!==e[t]}))){for(o in r)n.o(r,o)&&(n.m[o]=r[o]);if(l)var u=l(n)}for(t&&t(a);c<i.length;c++)s=i[c],n.o(e,s)&&e[s]&&e[s][0](),e[s]=0;return n.O(u)},a=self["webpackChunkpomovue"]=self["webpackChunkpomovue"]||[];a.forEach(t.bind(null,0)),a.push=t.bind(null,a.push.bind(a))}();var a=n.O(void 0,[998],(function(){return n(415)}));a=n.O(a)})();
+(function () {
+  var e = {
+      415: function (e, t, n) {
+        "use strict";
+        var a = n(242),
+          o = n(396);
+        const s = { id: "app" };
+        function i(e, t, n, a, i, r) {
+          const l = (0, o.up)("Home");
+          return (0, o.wg)(), (0, o.iD)("div", s, [(0, o.Wm)(l)]);
+        }
+        var r = n(139),
+          l = n.p + "img/playButton.d5ecdf60.svg",
+          c = n.p + "img/pauseButton.bf50f2ea.svg",
+          u = n.p + "img/skipButton.744ae4aa.svg",
+          d = n.p + "img/settingsButton.4b039059.svg";
+        const g = (e) => (
+            (0, o.dD)("data-v-130c794c"), (e = e()), (0, o.Cn)(), e
+          ),
+          k = { class: "container" },
+          m = g(() =>
+            (0, o._)(
+              "div",
+              { id: "header" },
+              [
+                (0, o._)("h1", null, [
+                  (0, o._)(
+                    "a",
+                    {
+                      href: "https://en.wikipedia.org/wiki/Pomodoro_Technique",
+                      target: "_blank",
+                    },
+                    "pomo"
+                  ),
+                  (0, o.Uk)("Core "),
+                ]),
+              ],
+              -1
+            )
+          ),
+          p = { class: "main" },
+          v = { class: "buttons corePart left" },
+          S = g(() => (0, o._)("p", { class: "stateMain" }, "normal", -1)),
+          h = { key: 0, src: l },
+          f = { key: 1, src: c },
+          B = g(() => (0, o._)("img", { src: u }, null, -1)),
+          _ = [B],
+          T = g(() => (0, o._)("p", { class: "stateSettings" }, "normal", -1)),
+          w = g(() => (0, o._)("img", { src: d }, null, -1)),
+          b = [T, w],
+          y = { class: "timerContainer corePart center" },
+          I = { class: "timer" },
+          O = { class: "currentTask" },
+          M = { class: "tasks corePart right" },
+          C = g(() =>
+            (0, o._)(
+              "div",
+              { class: "tasksHeader" },
+              [(0, o._)("h2", null, "Tasks")],
+              -1
+            )
+          ),
+          x = { class: "tasksBody" },
+          D = { class: "taskList" },
+          N = g(() => (0, o._)("span", null, "Breaks:", -1)),
+          E = g(() => (0, o._)("button", null, "+", -1)),
+          J = g(() =>
+            (0, o._)(
+              "footer",
+              null,
+              [
+                (0, o.Uk)(" Made with 💜 by "),
+                (0, o._)(
+                  "a",
+                  {
+                    href: "https://github.com/Franciscoborges2002",
+                    target: "_blank",
+                  },
+                  "Francisco Borges"
+                ),
+                (0, o.Uk)(". "),
+              ],
+              -1
+            )
+          );
+        function L(e, t, n, s, i, l) {
+          const c = (0, o.up)("SettingsModal"),
+            u = (0, o.up)("task");
+          return (
+            (0, o.wg)(),
+            (0, o.iD)("div", k, [
+              m,
+              (0, o._)("div", p, [
+                (0, o._)("div", v, [
+                  (0, o.wy)(
+                    (0, o.Wm)(
+                      c,
+                      {
+                        onCloseModal:
+                          t[0] || (t[0] = (t) => (e.showSettingsModal = !1)),
+                      },
+                      null,
+                      512
+                    ),
+                    [[a.F8, e.showSettingsModal]]
+                  ),
+                  (0, o._)(
+                    "button",
+                    {
+                      onClick:
+                        t[1] ||
+                        (t[1] = (...e) =>
+                          l.handleTimeButton && l.handleTimeButton(...e)),
+                    },
+                    [
+                      S,
+                      e.playButtonShow
+                        ? ((0, o.wg)(), (0, o.iD)("img", h))
+                        : ((0, o.wg)(), (0, o.iD)("img", f)),
+                    ]
+                  ),
+                  (0, o._)(
+                    "button",
+                    {
+                      onClick:
+                        t[2] ||
+                        (t[2] = (...e) =>
+                          l.handleSkipButton && l.handleSkipButton(...e)),
+                    },
+                    _
+                  ),
+                  (0, o._)(
+                    "button",
+                    {
+                      onClick:
+                        t[3] || (t[3] = (t) => (e.showSettingsModal = !0)),
+                    },
+                    b
+                  ),
+                ]),
+                (0, o._)("div", y, [
+                  (0, o._)("div", I, (0, r.zw)(l.timeDisplay), 1),
+                  (0, o._)(
+                    "div",
+                    O,
+                    "working on: " + (0, r.zw)(e.currentTask.description),
+                    1
+                  ),
+                ]),
+                (0, o._)("div", M, [
+                  C,
+                  (0, o._)("div", x, [
+                    (0, o._)("div", D, [
+                      ((0, o.wg)(!0),
+                      (0, o.iD)(
+                        o.HY,
+                        null,
+                        (0, o.Ko)(
+                          e.tasks,
+                          (e) => (
+                            (0, o.wg)(),
+                            (0, o.j4)(
+                              u,
+                              {
+                                class: "individualTask",
+                                key: e.id,
+                                onRemove: l.removeTask,
+                                onChangeWorking: l.changeWorking,
+                                task: e,
+                              },
+                              null,
+                              8,
+                              ["onRemove", "onChangeWorking", "task"]
+                            )
+                          )
+                        ),
+                        128
+                      )),
+                    ]),
+                    (0, o._)(
+                      "form",
+                      {
+                        class: "tasksForm",
+                        onSubmit:
+                          t[6] ||
+                          (t[6] = (0, a.iM)(
+                            (t) => l.addTask(e.task),
+                            ["prevent"]
+                          )),
+                      },
+                      [
+                        (0, o.wy)(
+                          (0, o._)(
+                            "input",
+                            {
+                              class: "taskName",
+                              type: "text",
+                              placeholder: "Task name",
+                              "onUpdate:modelValue":
+                                t[4] ||
+                                (t[4] = (t) => (e.task.description = t)),
+                            },
+                            null,
+                            512
+                          ),
+                          [[a.nr, e.task.description]]
+                        ),
+                        N,
+                        (0, o.wy)(
+                          (0, o._)(
+                            "input",
+                            {
+                              class: "totalIntervals",
+                              type: "number",
+                              min: "1",
+                              "onUpdate:modelValue":
+                                t[5] ||
+                                (t[5] = (t) => (e.task.totalIntervals = t)),
+                            },
+                            null,
+                            512
+                          ),
+                          [[a.nr, e.task.totalIntervals]]
+                        ),
+                        E,
+                      ],
+                      32
+                    ),
+                  ]),
+                ]),
+              ]),
+              J,
+            ])
+          );
+        }
+        var U = n(870);
+        const P = (e) => (
+            (0, o.dD)("data-v-4a945c80"), (e = e()), (0, o.Cn)(), e
+          ),
+          F = { class: "taskContainer" },
+          z = { class: "taskContent" },
+          W = {
+            key: 0,
+            class: "taskBody",
+            style: { "text-decoration": "line-through" },
+          },
+          j = { key: 0, style: { "font-weight": "bold" } },
+          $ = { key: 1, style: { "font-weight": "normal" } },
+          H = {
+            key: 1,
+            class: "taskBody",
+            style: { "text-decoration": "normal" },
+          },
+          Z = { key: 0, style: { "font-weight": "bold" } },
+          R = { key: 1, style: { "font-weight": "normal" } },
+          V = { class: "taskActions" },
+          q = P(() =>
+            (0, o._)("button", null, [(0, o._)("span", null, "⚙️")], -1)
+          );
+        function A(e, t, n, a, s, i) {
+          return (
+            (0, o.wg)(),
+            (0, o.iD)("div", F, [
+              (0, o._)("div", z, [
+                n.task.checked
+                  ? ((0, o.wg)(),
+                    (0, o.iD)("div", W, [
+                      n.task.working
+                        ? ((0, o.wg)(),
+                          (0, o.iD)(
+                            "span",
+                            j,
+                            (0, r.zw)(n.task.description),
+                            1
+                          ))
+                        : ((0, o.wg)(),
+                          (0, o.iD)(
+                            "span",
+                            $,
+                            (0, r.zw)(n.task.description),
+                            1
+                          )),
+                      (0, o.Uk)(
+                        " (" +
+                          (0, r.zw)(n.task.intervalsMade) +
+                          " / " +
+                          (0, r.zw)(n.task.totalIntervals) +
+                          ") ",
+                        1
+                      ),
+                    ]))
+                  : ((0, o.wg)(),
+                    (0, o.iD)("div", H, [
+                      n.task.working
+                        ? ((0, o.wg)(),
+                          (0, o.iD)(
+                            "span",
+                            Z,
+                            (0, r.zw)(n.task.description),
+                            1
+                          ))
+                        : ((0, o.wg)(),
+                          (0, o.iD)(
+                            "span",
+                            R,
+                            (0, r.zw)(n.task.description),
+                            1
+                          )),
+                      (0, o.Uk)(
+                        " (" +
+                          (0, r.zw)(n.task.intervalsMade) +
+                          " / " +
+                          (0, r.zw)(n.task.totalIntervals) +
+                          ") ",
+                        1
+                      ),
+                    ])),
+              ]),
+              (0, o._)("div", V, [
+                (0, o._)("button", null, [
+                  n.task.working
+                    ? ((0, o.wg)(),
+                      (0, o.iD)(
+                        "span",
+                        {
+                          key: 0,
+                          onClick:
+                            t[0] ||
+                            (t[0] = (t) => e.$emit("changeWorking", n.task)),
+                        },
+                        "✏️"
+                      ))
+                    : ((0, o.wg)(),
+                      (0, o.iD)(
+                        "span",
+                        {
+                          key: 1,
+                          onClick:
+                            t[1] ||
+                            (t[1] = (t) => e.$emit("changeWorking", n.task)),
+                        },
+                        "📚"
+                      )),
+                ]),
+                q,
+                (0, o._)(
+                  "button",
+                  {
+                    onClick: t[2] || (t[2] = (t) => e.$emit("remove", n.task)),
+                  },
+                  "❌"
+                ),
+              ]),
+            ])
+          );
+        }
+        var Y = {
+            name: "TaskComponent",
+            props: { task: { type: Object, required: !0 } },
+            methods: {
+              makeTask(e) {
+                this.$emit("submitCurrentTask", e);
+              },
+            },
+          },
+          K = n(89);
+        const X = (0, K.Z)(Y, [
+          ["render", A],
+          ["__scopeId", "data-v-4a945c80"],
+        ]);
+        var G = X;
+        const Q = { class: "popup" },
+          ee = { class: "popup-inner" },
+          te = (0, o._)(
+            "div",
+            { class: "header" },
+            [(0, o._)("h1", null, "Settings"), (0, o._)("span")],
+            -1
+          ),
+          ne = { class: "innerOption" },
+          ae = (0, o._)("h2", null, "Focus Time:", -1),
+          oe = ["value"],
+          se = { class: "innerOption" },
+          ie = (0, o._)("h2", null, "Litle Break:", -1),
+          re = ["value"],
+          le = { class: "innerOption" },
+          ce = (0, o._)("h2", null, "Big Break:", -1),
+          ue = ["value"],
+          de = { class: "innerOption" },
+          ge = (0, o._)("h2", null, "Want Music", -1),
+          ke = ["value"];
+        function me(e, t, n, a, s, i) {
+          return (
+            (0, o.wg)(),
+            (0, o.iD)("div", Q, [
+              (0, o._)("div", ee, [
+                te,
+                (0, o._)("div", ne, [
+                  ae,
+                  (0, o._)(
+                    "input",
+                    {
+                      type: "number",
+                      min: "0",
+                      max: "1440",
+                      class: "innerOptionChanger",
+                      id: "focusTime",
+                      value: i.returnFocusTime(),
+                    },
+                    null,
+                    8,
+                    oe
+                  ),
+                ]),
+                (0, o._)("div", se, [
+                  ie,
+                  (0, o._)(
+                    "input",
+                    {
+                      type: "number",
+                      min: "0",
+                      max: "1440",
+                      class: "innerOptionChanger",
+                      id: "lilBreak",
+                      value: e.localStorage.focusTime,
+                    },
+                    null,
+                    8,
+                    re
+                  ),
+                ]),
+                (0, o._)("div", le, [
+                  ce,
+                  (0, o._)(
+                    "input",
+                    {
+                      type: "number",
+                      min: "0",
+                      max: "1440",
+                      class: "innerOptionChanger",
+                      id: "bigBreak",
+                      value: e.localStorage.focusTime,
+                    },
+                    null,
+                    8,
+                    ue
+                  ),
+                ]),
+                (0, o._)("div", de, [
+                  ge,
+                  (0, o._)(
+                    "input",
+                    {
+                      type: "number",
+                      min: "0",
+                      max: "1440",
+                      class: "innerOptionChanger",
+                      id: "bigBreak",
+                      value: e.localStorage.focusTime,
+                    },
+                    null,
+                    8,
+                    ke
+                  ),
+                ]),
+                (0, o._)(
+                  "button",
+                  {
+                    class: "closeSettings",
+                    onClick: t[0] || (t[0] = (t) => e.closeSettingsMenu()),
+                  },
+                  "Save!"
+                ),
+              ]),
+            ])
+          );
+        }
+        const pe = { class: "popup" },
+          ve = { class: "popup-inner" };
+        function Se(e, t, n, a, s, i) {
+          return (
+            (0, o.wg)(),
+            (0, o.iD)("div", pe, [
+              (0, o._)("div", ve, [
+                (0, o.WI)(e.$slots, "default"),
+                (0, o._)(
+                  "button",
+                  {
+                    class: "popup-close",
+                    onClick: t[0] || (t[0] = (e) => n.TogglePopup()),
+                  },
+                  " Close Popup "
+                ),
+              ]),
+            ])
+          );
+        }
+        var he = { props: ["TogglePopup"] };
+        const fe = (0, K.Z)(he, [["render", Se]]);
+        var Be = fe,
+          _e = {
+            setup() {
+              const e = (0, U.iH)({ buttonTrigger: !1 }),
+                t = (t) => {
+                  e.value[t] = !e.value[t];
+                };
+              return { Popup: Be, popupTriggers: e, TogglePopup: t };
+            },
+            beforeCreate() {
+              document.getElementsByClassName("bigBreak").value = "16";
+            },
+            methods: {
+              returnFocusTime() {
+                return localStorage.focusTime;
+              },
+              returnLilBreak() {
+                return localStorage.lilBreak;
+              },
+              returnBigBreak() {
+                return localStorage.bigBreak;
+              },
+              saveOnLocalStorage() {
+                (localStorage.focusTime =
+                  document.getElementById("focusTime").value),
+                  (localStorage.lilBreak =
+                    document.getElementById("lilBreak").value),
+                  (localStorage.bigBreak =
+                    document.getElementById("bigBreak").value),
+                  console.log("Settings were saved!");
+              },
+              appearPopUp() {},
+            },
+          };
+        const Te = (0, K.Z)(_e, [["render", me]]);
+        var we = Te;
+        const be = (e) => (
+            (0, o.dD)("data-v-3cd156c4"), (e = e()), (0, o.Cn)(), e
+          ),
+          ye = be(() =>
+            (0, o._)(
+              "div",
+              { class: "header" },
+              [(0, o._)("h1", null, "Settings:")],
+              -1
+            )
+          ),
+          Ie = be(() => (0, o._)("span", null, null, -1)),
+          Oe = { class: "innerOption" },
+          Me = be(() => (0, o._)("h2", null, "Focus Time:", -1)),
+          Ce = ["value"],
+          xe = ["value"],
+          De = { class: "innerOption" },
+          Ne = be(() => (0, o._)("h2", null, "Litle Break:", -1)),
+          Ee = ["value"],
+          Je = ["value"],
+          Le = { class: "innerOption" },
+          Ue = be(() => (0, o._)("h2", null, "Big Break:", -1)),
+          Pe = ["value"],
+          Fe = ["value"],
+          ze = { class: "innerOption" },
+          We = be(() => (0, o._)("h2", null, "Sound Effect", -1)),
+          je = be(() => (0, o._)("option", null, "sound1", -1)),
+          $e = be(() => (0, o._)("option", null, "sound2", -1)),
+          He = [je, $e],
+          Ze = { class: "innerOption" },
+          Re = be(() => (0, o._)("h2", null, "Want Music", -1)),
+          Ve = ["checked"],
+          qe = { key: 0, class: "innerOption" },
+          Ae = be(() => (0, o._)("h2", null, "Provide a yt music:", -1)),
+          Ye = be(() =>
+            (0, o._)("input", { type: "text", id: "musicLink" }, null, -1)
+          ),
+          Ke = [Ae, Ye],
+          Xe = be(() => (0, o._)("div", { class: "close" }, null, -1));
+        function Ge(e, t, n, s, i, r) {
+          return (
+            (0, o.wg)(),
+            (0, o.iD)(
+              "div",
+              {
+                class: "modal-overlay",
+                onClick: t[6] || (t[6] = (t) => e.$emit("close-modal")),
+              },
+              [
+                (0, o._)(
+                  "div",
+                  {
+                    class: "modal",
+                    onClick: t[5] || (t[5] = (0, a.iM)(() => {}, ["stop"])),
+                  },
+                  [
+                    (0, o._)(
+                      "button",
+                      {
+                        class: "closeModal",
+                        onClick: t[0] || (t[0] = (t) => e.$emit("close-modal")),
+                      },
+                      "X"
+                    ),
+                    ye,
+                    Ie,
+                    (0, o._)("div", Oe, [
+                      Me,
+                      (0, o._)("div", null, [
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "focusTimeMinutes",
+                            value: r.returnFocusTimeMinutes(),
+                          },
+                          null,
+                          8,
+                          Ce
+                        ),
+                        (0, o.Uk)(" : "),
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "focusTimeSeconds",
+                            value: r.returnFocusTimeSeconds(),
+                          },
+                          null,
+                          8,
+                          xe
+                        ),
+                      ]),
+                    ]),
+                    (0, o._)("div", De, [
+                      Ne,
+                      (0, o._)("div", null, [
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "lilBreakMinutes",
+                            value: r.returnLilBreakMinutes(),
+                          },
+                          null,
+                          8,
+                          Ee
+                        ),
+                        (0, o.Uk)(" : "),
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "lilBreakSeconds",
+                            value: r.returnLilBreakSeconds(),
+                          },
+                          null,
+                          8,
+                          Je
+                        ),
+                      ]),
+                    ]),
+                    (0, o._)("div", Le, [
+                      Ue,
+                      (0, o._)("div", null, [
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "bigBreakMinutes",
+                            value: r.returnBigBreakMinutes(),
+                          },
+                          null,
+                          8,
+                          Pe
+                        ),
+                        (0, o.Uk)(" : "),
+                        (0, o._)(
+                          "input",
+                          {
+                            type: "number",
+                            min: "0",
+                            max: "1440",
+                            class: "innerOptionChanger",
+                            id: "bigBreakSeconds",
+                            value: r.returnBigBreakSeconds(),
+                          },
+                          null,
+                          8,
+                          Fe
+                        ),
+                      ]),
+                    ]),
+                    (0, o._)("div", ze, [
+                      We,
+                      (0, o._)("div", null, [
+                        (0, o.wy)(
+                          (0, o._)(
+                            "select",
+                            {
+                              "onUpdate:modelValue":
+                                t[1] || (t[1] = (t) => (e.audio.audio = t)),
+                            },
+                            He,
+                            512
+                          ),
+                          [[a.bM, e.audio.audio]]
+                        ),
+                        (0, o.wy)(
+                          (0, o._)(
+                            "input",
+                            {
+                              type: "number",
+                              min: "0",
+                              max: "100",
+                              class: "innerOptionMusicVolume",
+                              id: "bigBreakMinutes",
+                              "onUpdate:modelValue":
+                                t[2] || (t[2] = (t) => (e.audio.volume = t)),
+                            },
+                            null,
+                            512
+                          ),
+                          [[a.nr, e.audio.volume]]
+                        ),
+                        (0, o.Uk)(" % "),
+                      ]),
+                    ]),
+                    (0, o._)("div", Ze, [
+                      Re,
+                      (0, o._)(
+                        "input",
+                        {
+                          type: "checkbox",
+                          checked: e.wantMusic,
+                          onClick: t[3] || (t[3] = (e) => r.wantsMusic()),
+                        },
+                        null,
+                        8,
+                        Ve
+                      ),
+                    ]),
+                    e.wantMusic
+                      ? ((0, o.wg)(), (0, o.iD)("div", qe, Ke))
+                      : (0, o.kq)("", !0),
+                    (0, o._)(
+                      "button",
+                      {
+                        class: "saveSettings",
+                        onClick: t[4] || (t[4] = (e) => r.saveOnLocalStorage()),
+                      },
+                      "Save!"
+                    ),
+                  ]
+                ),
+                Xe,
+              ]
+            )
+          );
+        }
+        var Qe = {
+          data: () => {
+            const e = JSON.parse(localStorage.audio);
+            return {
+              audio: { audio: e.audio, volume: 100 * e.volume },
+              wantMusic: JSON.parse(localStorage.wantsMusic),
+            };
+          },
+          methods: {
+            returnFocusTimeMinutes() {
+              return localStorage.focusTime < 60
+                ? 0
+                : localStorage.focusTime / 60;
+            },
+            returnFocusTimeSeconds() {
+              return localStorage.focusTime < 60
+                ? localStorage.focusTime
+                : localStorage.focusTime % 60;
+            },
+            returnLilBreak() {
+              return localStorage.lilBreak;
+            },
+            returnLilBreakMinutes() {
+              return localStorage.lilBreak < 60
+                ? 0
+                : localStorage.lilBreak / 60;
+            },
+            returnLilBreakSeconds() {
+              return localStorage.lilBreak < 60
+                ? localStorage.lilBreak
+                : localStorage.lilBreak % 60;
+            },
+            returnBigBreakMinutes() {
+              return localStorage.bigBreak < 60
+                ? 0
+                : localStorage.bigBreak / 60;
+            },
+            returnBigBreakSeconds() {
+              return localStorage.bigBreak < 60
+                ? localStorage.bigBreak
+                : localStorage.bigBreak % 60;
+            },
+            returnBigBreak() {
+              return localStorage.bigBreak;
+            },
+            returnWantsMusic() {
+              return localStorage.wantsMusic;
+            },
+            wantsMusic() {
+              this.wantMusic = !this.wantMusic;
+            },
+            saveOnLocalStorage() {
+              const e =
+                  parseInt(
+                    60 * document.getElementById("focusTimeMinutes").value
+                  ) +
+                  parseInt(document.getElementById("focusTimeSeconds").value),
+                t =
+                  parseInt(
+                    60 * document.getElementById("lilBreakMinutes").value
+                  ) +
+                  parseInt(document.getElementById("lilBreakSeconds").value),
+                n =
+                  parseInt(
+                    60 * document.getElementById("bigBreakMinutes").value
+                  ) +
+                  parseInt(document.getElementById("bigBreakSeconds").value),
+                a = {
+                  audio: this.audio.audio,
+                  volume: this.audio.volume / 100,
+                };
+              console.log(this.audio),
+                (localStorage.focusTime = e),
+                (localStorage.lilBreak = t),
+                (localStorage.bigBreak = n),
+                (localStorage.audio = JSON.stringify(a)),
+                (localStorage.wantsMusic = this.wantMusic);
+            },
+          },
+        };
+        const et = (0, K.Z)(Qe, [
+          ["render", Ge],
+          ["__scopeId", "data-v-3cd156c4"],
+        ]);
+        var tt = et;
+        const nt = { class: "modalOustide" },
+          at = { class: "modalContainer" },
+          ot = (0, o._)(
+            "div",
+            { class: "modalHead" },
+            [(0, o._)("h1", null, "asd")],
+            -1
+          ),
+          st = (0, o._)("div", { class: "separator" }, null, -1),
+          it = { class: "modalBody" };
+        function rt(e, t, n, a, s, i) {
+          return (
+            (0, o.wg)(),
+            (0, o.iD)("div", nt, [
+              (0, o._)("div", at, [
+                ot,
+                st,
+                (0, o._)("div", it, [
+                  (0, o._)("p", null, (0, r.zw)(n.description), 1),
+                ]),
+              ]),
+            ])
+          );
+        }
+        var lt = { props: ["title", "description"] };
+        const ct = (0, K.Z)(lt, [["render", rt]]);
+        var ut = ct;
+        const dt = Object.freeze({
+          focus: "focusTime",
+          littleBreak: "lilBreakTime",
+          bigBreak: "bigBreakTime",
+        });
+        var gt = dt;
+        const kt = n(686);
+        var mt = {
+          name: "HomeComponent",
+          components: { Task: G, SettingsModal: tt, ModalPopUp: ut },
+          setup() {
+            const e = (0, U.iH)({ buttonTrigger: !1 }),
+              t = (t) => {
+                console.log(e.value[t]), (e.value[t] = !e.value[t]);
+              };
+            return { SettingsMenu: we, popupTriggers: e, togglePopup: t };
+          },
+          data: () => {
+            const e = localStorage.focusTime,
+              t = localStorage.lilBreak,
+              n = localStorage.bigBreak,
+              a = localStorage.currentState,
+              o = localStorage.currentTimeInSeconds;
+            var s,
+              i = "";
+            const r = JSON.parse(localStorage.getItem("audio"));
+            return (
+              console.log(r),
+              console.log(localStorage.currentState),
+              a === gt.focus && (s = e),
+              a === gt.littleBreak && (s = t),
+              a === gt.bigBreak && (s = n),
+              s > o && (s = o),
+              localStorage.currentTask &&
+                (i = JSON.parse(localStorage.currentTask)),
+              {
+                currentTimeInSeconds: s,
+                currentState: a,
+                focusTime: e,
+                lilBreakTime: t,
+                bigBreakTime: n,
+                timeRunning: !1,
+                playButtonShow: !0,
+                tasks: JSON.parse(localStorage.tasks),
+                task: { checked: !1, intervalsMade: 0, totalIntervals: 1 },
+                audio: { audio: r.audio, volume: r.volume },
+                currentTask: i,
+                showSettingsModal: !1,
+              }
+            );
+          },
+          methods: {
+            handleSettingsButton() {},
+            handleTimeButton() {
+              (this.playButtonShow = !this.playButtonShow),
+                this.timeRunning
+                  ? (this.stopClock(),
+                    (this.timeRunning = !1),
+                    localStorage.setItem(
+                      "currentTimeInSeconds",
+                      this.currentTimeInSeconds
+                    ))
+                  : (this.playClock(), (this.timeRunning = !0));
+            },
+            handleSkipButton() {
+              this.passCurrentState();
+            },
+            playClock() {
+              this.interval = setInterval(() => {
+                0 != this.currentTimeInSeconds &&
+                  (this.currentTimeInSeconds -= 1);
+              }, 1e3);
+            },
+            stopClock() {
+              clearInterval(this.interval);
+            },
+            addTask(e) {
+              let t = JSON.parse(localStorage.getItem("tasks"));
+              if (
+                ((e.id = Date.now()),
+                "" === e.description || void 0 === e.description)
+              )
+                return void alert("You need to add a name for the task!");
+              for (let a = 0; a < t.length; a++)
+                if (t[a].description === e.description)
+                  return void alert("Task name already exists!");
+              if (!e.totalIntervals)
+                return void alert(
+                  "Make sure you insert the number os intervals!"
+                );
+              let n = {
+                id: e.id,
+                description: e.description,
+                checked: e.checked,
+                totalIntervals: e.totalIntervals,
+                intervalsMade: 0,
+              };
+              (n.working = t < 1),
+                t.push(n),
+                localStorage.setItem("tasks", JSON.stringify(t)),
+                "" === this.currentTask &&
+                  ((localStorage.currentTask = JSON.stringify(n)),
+                  (this.currentTask = n)),
+                this.tasks.push(n),
+                (this.task = { checked: !1, intervalsMade: 0 }),
+                console.log(this.tasks);
+            },
+            removeTask(e) {
+              let t = JSON.parse(localStorage.getItem("tasks"));
+              this.currentTask.id === e.id &&
+                (localStorage.setItem("currentTask", "{}"),
+                (this.currentTask = "")),
+                console.log(this.currentTask);
+              const n = t.findIndex((t) => t.id === e.id);
+              n > -1 && t.splice(n, 1),
+                localStorage.setItem("tasks", JSON.stringify(t));
+              const a = this.tasks.findIndex((t) => t.id === e.id);
+              a > -1 && this.tasks.splice(a, 1);
+            },
+            changeWorking(e) {
+              const t = JSON.parse(localStorage.getItem("tasks"));
+              let n;
+              if (
+                (console.log(this.currentTask),
+                this.currentTask &&
+                  (console.log("TESTEEEE"),
+                  (n = t.findIndex((e) => e.id === this.currentTask.id)),
+                  console.log(n),
+                  n > -1))
+              ) {
+                t[n].working = !1;
+                let e = this.tasks[n];
+                (e.working = !1), console.log(this.tasks), console.log(t);
+              }
+              const a = t.findIndex((t) => t.id === e.id);
+              if ((console.log(a), a > -1)) {
+                const n = !t[a].working;
+                (t[a].working = n), (e.working = !0);
+              }
+              localStorage.setItem("tasks", JSON.stringify(t)),
+                localStorage.setItem("currentTask", JSON.stringify(e)),
+                (this.currentTask = e);
+            },
+            addInterval(e) {
+              console.log(e);
+              let t = JSON.parse(localStorage.getItem("tasks"));
+              const n = t.findIndex((t) => t.id === e.id);
+              if ((console.log(n), console.log(t), n > -1)) {
+                const e = t[n];
+                (e.intervalsMade = e.intervalsMade + 1),
+                  localStorage.setItem("tasks", JSON.stringify(t));
+              }
+              console.log(t);
+              const a = this.tasks.findIndex((t) => t.id === e.id);
+              if (a > -1) {
+                const e = this.tasks[a];
+                e.intervalsMade = e.intervalsMade + 1;
+              }
+            },
+            passCurrentState() {
+              const e = localStorage.getItem("currentState"),
+                t = parseInt(localStorage.getItem("lilBreaksCounter")),
+                n = parseInt(localStorage.getItem("maxLilBreaks")),
+                a = this.currentTask;
+              if (e === gt.focus)
+                if (t < n) {
+                  localStorage.setItem("currentState", gt.littleBreak),
+                    (this.currentState = gt.littleBreak);
+                  let e = localStorage.lilBreak;
+                  (this.currentTimeInSeconds = e),
+                    localStorage.setItem("lilBreaksCounter", t + 1);
+                } else {
+                  localStorage.setItem("currentState", gt.bigBreak),
+                    (this.currentState = gt.bigBreak);
+                  let e = localStorage.bigBreak;
+                  (this.currentTimeInSeconds = e),
+                    localStorage.setItem("lilBreaksCounter", 0);
+                }
+              else {
+                localStorage.setItem("currentState", gt.focus),
+                  (this.currentState = gt.focus);
+                let e = localStorage.focusTime;
+                this.currentTimeInSeconds = e;
+              }
+              const o = this.tasks.findIndex((e) => e.id === a.id);
+              console.log(o),
+                o > -1 && this.addInterval(this.tasks[o]),
+                console.log(this);
+            },
+          },
+          computed: {
+            timeDisplay() {
+              let e, t, a, o;
+              if (
+                (this.currentTimeInSeconds < 60
+                  ? ((a = 0),
+                    (o = this.currentTimeInSeconds),
+                    (e = "00"),
+                    (t = ("0" + this.currentTimeInSeconds).slice(-2)))
+                  : ((a = parseInt(this.currentTimeInSeconds / 60)),
+                    (o = this.currentTimeInSeconds % 60),
+                    (e = ("0" + a).slice(-2)),
+                    (t = ("0" + o).slice(-2))),
+                0 === a && 0 === o)
+              ) {
+                this.passCurrentState();
+                var s = new Audio(n(561)(`./${this.audio.audio}.mp3`));
+                (s.volume = 0.05), s.play();
+              }
+              return `${e}:${t}`;
+            },
+          },
+          beforeCreate() {
+            "undefined" !== typeof Storage
+              ? localStorage.focusTime
+                ? console.log("Já tem registado")
+                : ((localStorage.focusTime = kt.focusTime),
+                  (localStorage.lilBreak = kt.lilBreak),
+                  (localStorage.bigBreak = kt.bigBreak),
+                  (localStorage.currentState = kt.startState),
+                  (localStorage.lilBreaksCounter = kt.lilBreaksCounter),
+                  (localStorage.wantsMusic = kt.wantsMusic),
+                  (localStorage.tasks = kt.tasks),
+                  (localStorage.currentTask = kt.currentTask),
+                  (localStorage.maxLilBreaks = kt.maxLilBreaks),
+                  (localStorage.audio = JSON.stringify(kt.audio)))
+              : console.log("Não existe suporte ao localStorage");
+          },
+        };
+        const pt = (0, K.Z)(mt, [
+          ["render", L],
+          ["__scopeId", "data-v-130c794c"],
+        ]);
+        var vt = pt,
+          St = {
+            name: "App",
+            components: { Home: vt },
+            watch: {
+              items: {
+                handler(e, t) {
+                  console.log(t + " --\x3e " + e);
+                },
+                deep: !0,
+              },
+            },
+          };
+        const ht = (0, K.Z)(St, [["render", i]]);
+        var ft = ht;
+        (0, a.ri)(ft).mount("#app");
+      },
+      686: function (e) {
+        e.exports = {
+          focusTime: 3,
+          lilBreak: 300,
+          bigBreak: 900,
+          lilBreaksCounter: 0,
+          maxLilBreaks: 3,
+          startState: "focusTime",
+          currentState: "focusTime",
+          wantsMusic: !0,
+          tasks: "[]",
+          currentTask: "",
+          audio: { audio: "sound2", volume: 0.1 },
+        };
+      },
+      561: function (e, t, n) {
+        var a = { "./sound1.mp3": 404, "./sound2.mp3": 423 };
+        function o(e) {
+          var t = s(e);
+          return n(t);
+        }
+        function s(e) {
+          if (!n.o(a, e)) {
+            var t = new Error("Cannot find module '" + e + "'");
+            throw ((t.code = "MODULE_NOT_FOUND"), t);
+          }
+          return a[e];
+        }
+        (o.keys = function () {
+          return Object.keys(a);
+        }),
+          (o.resolve = s),
+          (e.exports = o),
+          (o.id = 561);
+      },
+      404: function (e, t, n) {
+        "use strict";
+        e.exports = n.p + "media/sound1.0ee4792f.mp3";
+      },
+      423: function (e, t, n) {
+        "use strict";
+        e.exports = n.p + "media/sound2.da32e805.mp3";
+      },
+    },
+    t = {};
+  function n(a) {
+    var o = t[a];
+    if (void 0 !== o) return o.exports;
+    var s = (t[a] = { exports: {} });
+    return e[a](s, s.exports, n), s.exports;
+  }
+  (n.m = e),
+    (function () {
+      var e = [];
+      n.O = function (t, a, o, s) {
+        if (!a) {
+          var i = 1 / 0;
+          for (u = 0; u < e.length; u++) {
+            (a = e[u][0]), (o = e[u][1]), (s = e[u][2]);
+            for (var r = !0, l = 0; l < a.length; l++)
+              (!1 & s || i >= s) &&
+              Object.keys(n.O).every(function (e) {
+                return n.O[e](a[l]);
+              })
+                ? a.splice(l--, 1)
+                : ((r = !1), s < i && (i = s));
+            if (r) {
+              e.splice(u--, 1);
+              var c = o();
+              void 0 !== c && (t = c);
+            }
+          }
+          return t;
+        }
+        s = s || 0;
+        for (var u = e.length; u > 0 && e[u - 1][2] > s; u--) e[u] = e[u - 1];
+        e[u] = [a, o, s];
+      };
+    })(),
+    (function () {
+      n.d = function (e, t) {
+        for (var a in t)
+          n.o(t, a) &&
+            !n.o(e, a) &&
+            Object.defineProperty(e, a, { enumerable: !0, get: t[a] });
+      };
+    })(),
+    (function () {
+      n.g = (function () {
+        if ("object" === typeof globalThis) return globalThis;
+        try {
+          return this || new Function("return this")();
+        } catch (e) {
+          if ("object" === typeof window) return window;
+        }
+      })();
+    })(),
+    (function () {
+      n.o = function (e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t);
+      };
+    })(),
+    (function () {
+      n.p = "/";
+    })(),
+    (function () {
+      var e = { 143: 0 };
+      n.O.j = function (t) {
+        return 0 === e[t];
+      };
+      var t = function (t, a) {
+          var o,
+            s,
+            i = a[0],
+            r = a[1],
+            l = a[2],
+            c = 0;
+          if (
+            i.some(function (t) {
+              return 0 !== e[t];
+            })
+          ) {
+            for (o in r) n.o(r, o) && (n.m[o] = r[o]);
+            if (l) var u = l(n);
+          }
+          for (t && t(a); c < i.length; c++)
+            (s = i[c]), n.o(e, s) && e[s] && e[s][0](), (e[s] = 0);
+          return n.O(u);
+        },
+        a = (self["webpackChunkpomovue"] = self["webpackChunkpomovue"] || []);
+      a.forEach(t.bind(null, 0)), (a.push = t.bind(null, a.push.bind(a)));
+    })();
+  var a = n.O(void 0, [998], function () {
+    return n(415);
+  });
+  a = n.O(a);
+})();
 //# sourceMappingURL=app.9bd7ff22.js.map
