@@ -38,7 +38,7 @@ Before starting the project you need at least [Git](https://git-scm.com) and [No
 
 ```bash
 	#First, let's clone the project
-	$git clone https://github.com/Franciscoborges2002/Aurora
+	$git clone https://github.com/Franciscoborges2002/pomoCore
 
 	#In second place, let's acess the cloned git
 	$cd pomocore
