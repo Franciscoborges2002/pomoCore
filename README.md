@@ -31,6 +31,7 @@ You can see the layout thourh [Figma](https://www.figma.com/file/9uMwwhxJYl08Pnx
     - [x] Make the tasks
     - [x] Make the tasks modal
     - [x] Make everything look nice
+- [x] App finished
 
 ### Start the project <a name="howToStartTheProject"></a>
 Before starting the project you need at least [Git](https://git-scm.com) and [Node](https://nodejs.org).
@@ -40,7 +41,7 @@ Before starting the project you need at least [Git](https://git-scm.com) and [No
 	$git clone https://github.com/Franciscoborges2002/Aurora
 
 	#In second place, let's acess the cloned git
-	$cd Aurora
+	$cd pomocore
 
 	#In the next step we need to intall all the dependencies:
 	$npm install
@@ -48,7 +49,7 @@ Before starting the project you need at least [Git](https://git-scm.com) and [No
 	$yarn
 	
 	#Last step, lets run the project:
-	$npm run dev
+	$npm run serve
 	#OR
 	$yarn dev
 ```
