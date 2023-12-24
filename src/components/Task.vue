@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     makeTask(task) {
-      console.log(this);
+      //console.log(this);
       this.$emit("changeWorking", task);
     },
   },

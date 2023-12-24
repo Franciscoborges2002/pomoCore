@@ -1,109 +1,113 @@
 <template>
   <div class="modalOverlay" @click="$emit('close-modal')">
-    <div class="modal" @click.stop>
-      <!-- <img class="check" src="~/assets/check-icon.png" alt="" /> -->
-      <button class="closeModal" @click="$emit('close-modal')">Close</button>
-      <div class="header">
-        <h1>Settings:</h1>
+    <div class="modalOutline" @click.stop>
+      <div class="modalInitialPart">
+        <button class="closeModal" @click="$emit('close-modal')">X</button>
       </div>
-      <span></span>
-      <div class="innerOption">
-        <h2>Focus Time:</h2>
-        <div>
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="focusTimeMinutes"
-            :value="returnFocusTimeMinutes()"
-          />
-          :
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="focusTimeSeconds"
-            :value="returnFocusTimeSeconds()"
-          />
+      <div class="modalMainPart">
+        <!-- <img class="check" src="~/assets/check-icon.png" alt="" /> -->
+
+        <div class="header">
+          <h1>Settings:</h1>
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Litle Break:</h2>
-        <div>
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="lilBreakMinutes"
-            :value="returnLilBreakMinutes()"
-          />
-          :
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="lilBreakSeconds"
-            :value="returnLilBreakSeconds()"
-          />
+        <span></span>
+        <div class="innerOption">
+          <h2>Focus Time:</h2>
+          <div>
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              id="focusTimeMinutes"
+              :value="returnFocusTimeMinutes()"
+            />
+            :
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              id="focusTimeSeconds"
+              :value="returnFocusTimeSeconds()"
+            />
+          </div>
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Little Break Intervals:</h2>
-        <input
+        <div class="innerOption">
+          <h2>Litle Break:</h2>
+          <div>
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              id="lilBreakMinutes"
+              :value="returnLilBreakMinutes()"
+            />
+            :
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              id="lilBreakSeconds"
+              :value="returnLilBreakSeconds()"
+            />
+          </div>
+        </div>
+        <div class="innerOption">
+          <h2>Little Break Intervals:</h2>
+          <input
             type="number"
             min="0"
             class="innerOptionChanger"
             id="lilBreakIntervals"
             :value="returnLilBreakInterval()"
           />
-      </div>
-      <div class="innerOption">
-        <h2>Big Break:</h2>
-        <div>
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="bigBreakMinutes"
-            :value="returnBigBreakMinutes()"
-          />
-          :
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            id="bigBreakSeconds"
-            :value="returnBigBreakSeconds()"
-          />
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Sound Effect</h2>
-        <div class="soundEffectOptions">
-          <select v-model="audio.audio">
-            <option>sound1</option>
-            <option>sound2</option>
-          </select>
+        <div class="innerOption">
+          <h2>Big Break:</h2>
           <div>
             <input
               type="number"
               min="0"
-              max="100"
-              class="innerOptionMusicVolume"
+              max="1440"
+              class="innerOptionChanger"
               id="bigBreakMinutes"
-              v-model="audio.volume"
+              :value="returnBigBreakMinutes()"
             />
-            %
+            :
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              id="bigBreakSeconds"
+              :value="returnBigBreakSeconds()"
+            />
           </div>
         </div>
-      </div>
-      <!-- <div class="innerOption">
+        <div class="innerOption">
+          <h2>Sound Effect</h2>
+          <div class="soundEffectOptions">
+            <select v-model="audio.audio">
+              <option>sound1</option>
+              <option>sound2</option>
+            </select>
+            <div>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                class="innerOptionMusicVolume"
+                id="bigBreakMinutes"
+                v-model="audio.volume"
+              />
+              %
+            </div>
+          </div>
+        </div>
+        <!-- <div class="innerOption">
         <h2>Want Music</h2>
         <input type="checkbox" :checked="wantMusic" @click="wantsMusic()"/>
       </div>
@@ -111,11 +115,17 @@
         <h2>Provide a yt music:</h2>
         <input type="text" id="musicLink"/>
       </div> -->
-
-      <div class="dangerStuff">
-        <p class="dangerText" @click="deleteEverything()">Delete Everything</p>
       </div>
-      <button class="saveSettings" @click="saveOnLocalStorage()">Save!</button>
+      <div class="modalBottomPart">
+        <div class="dangerStuff">
+          <p class="dangerText" @click="deleteEverything()">
+            Delete Everything
+          </p>
+        </div>
+        <button class="saveSettings" @click="saveOnLocalStorage()">
+          Save!
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -128,8 +138,8 @@ export default {
       audio: {
         audio: localStorageAudio.audio,
         volume: localStorageAudio.volume * 100,
-      }/* ,
-      wantMusic: JSON.parse(localStorage.wantsMusic), */
+      } /* ,
+      wantMusic: JSON.parse(localStorage.wantsMusic), */,
     };
   },
   methods: {
@@ -138,17 +148,17 @@ export default {
         return "00";
       }
 
-      if((localStorage.focusTime / 60) < 10){
-        return "0" + (localStorage.focusTime / 60);
+      if (localStorage.focusTime / 60 < 10) {
+        return "0" + localStorage.focusTime / 60;
       }
 
       return Math.floor(localStorage.focusTime / 60);
     },
     returnFocusTimeSeconds() {
-      let checkTime = localStorage.focusTime % 60;//get the seconds that are left
-      
+      let checkTime = localStorage.focusTime % 60; //get the seconds that are left
+
       if (checkTime < 60) {
-        if(checkTime < 10){
+        if (checkTime < 10) {
           return "0" + checkTime;
         }
         return checkTime;
@@ -164,17 +174,17 @@ export default {
         return "00";
       }
 
-      if((localStorage.lilBreak / 60) < 10){
-        return "0" + (localStorage.lilBreak / 60);
+      if (localStorage.lilBreak / 60 < 10) {
+        return "0" + localStorage.lilBreak / 60;
       }
 
       return Math.floor(localStorage.lilBreak / 60);
     },
     returnLilBreakSeconds() {
-      let checkTime = localStorage.lilBreak % 60;//get the seconds that are left
-      
+      let checkTime = localStorage.lilBreak % 60; //get the seconds that are left
+
       if (checkTime < 60) {
-        if(checkTime < 10){
+        if (checkTime < 10) {
           return "0" + checkTime;
         }
         return checkTime;
@@ -187,17 +197,17 @@ export default {
         return "00";
       }
 
-      if((localStorage.bigBreak / 60) < 10){
-        return "0" + (localStorage.bigBreak / 60);
+      if (localStorage.bigBreak / 60 < 10) {
+        return "0" + localStorage.bigBreak / 60;
       }
 
       return Math.floor(localStorage.bigBreak / 60);
     },
     returnBigBreakSeconds() {
-      let checkTime = localStorage.bigBreak % 60;//get the seconds that are left
-      
+      let checkTime = localStorage.bigBreak % 60; //get the seconds that are left
+
       if (checkTime < 60) {
-        if(checkTime < 10){
+        if (checkTime < 10) {
           return "0" + checkTime;
         }
         return checkTime;
@@ -208,7 +218,7 @@ export default {
     returnBigBreak() {
       return localStorage.bigBreak;
     },
-    returnLilBreakInterval(){
+    returnLilBreakInterval() {
       return localStorage.maxLilBreaks;
     },
     /*returnWantsMusic() {
@@ -217,7 +227,7 @@ export default {
      wantsMusic() {
       this.wantMusic = !this.wantMusic;
     }, */
-    deleteEverything(){
+    deleteEverything() {
       if (window.confirm("Do you want to really delete everything?")) {
         localStorage.clear();
         location.reload();
@@ -237,7 +247,9 @@ export default {
         audio: this.audio.audio,
         volume: this.audio.volume / 100,
       };
-      const lilBreakIntervals = parseInt(document.getElementById("lilBreakIntervals").value);
+      const lilBreakIntervals = parseInt(
+        document.getElementById("lilBreakIntervals").value
+      );
 
       //save in localStorage
       localStorage.focusTime = focusTimeSeconds;
@@ -265,27 +277,43 @@ export default {
   background-color: #000000da;
 }
 
-.modal {
-  text-align: center;
+.modalOutline {
   background-color: white;
-  height: 410px;
+  height: 430px;
   width: 500px;
   margin-top: 10%;
-  padding: 30px 0;
+  padding: 20px 5px;
   border-radius: 20px;
 }
 
-.closeModal {
-  margin-left: 10px;
-  border: 0px;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
+.modalInitialPart {
   display: flex;
-  align-items: center;
+  justify-content: end;
+  padding-bottom: 2%;
 }
 
-.header{
+.closeModal {
+  cursor: pointer;
+  font-size: x-large;
+  font-weight: 600;
+  margin-right: 3%;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.modalBottomPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1%;
+}
+
+.header {
   padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 h6 {
@@ -306,10 +334,21 @@ p {
   color: white;
   font-size: 14px;
   border-radius: 16px;
-  margin-top: 28px;
+  margin-top: 24px;
+  transition: all 0.5s;
 }
 
-.innerOption{
+.saveSettings:hover {
+  cursor: pointer;
+  background-color: #ac003e;
+}
+
+.saveSettings:active {
+  cursor: pointer;
+  background-color: #ac000e;
+}
+
+.innerOption {
   display: flex;
   justify-content: space-between;
   padding-bottom: 8px;
@@ -329,9 +368,10 @@ p {
   gap: 20px;
 }
 
-.dangerText{
-  color:#ac003e;
+.dangerText {
+  color: #ac003e;
   text-decoration: underline;
   margin: 0px;
+  cursor: pointer;
 }
 </style>

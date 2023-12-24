@@ -113,7 +113,7 @@ export default {
     });
 
     const togglePopup = (trigger) => {
-      console.log(popupTriggers.value[trigger]);
+      //console.log(popupTriggers.value[trigger]);
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
 
@@ -286,11 +286,12 @@ export default {
       let indexWorkingTask;
       //this.currentTask = task;
 
-      if (this.currentTask) {
+      if (this.currentTask) {// verify if the task is the current that user wants to change
         indexWorkingTask = localStorageTasks.findIndex(
           (item) => item.id === this.currentTask.id
         ); //get the index of the object
 
+        //Check if there is something in the index
         if (indexWorkingTask > -1) {
           localStorageTasks[indexWorkingTask].working = false;
 
@@ -326,25 +327,31 @@ export default {
         (item) => item.id === task.id
       ); //get the index of the object
 
+      //if there is an index in the localStorage tasks, make the change
       if (localStorageIndexTasks > -1) {
         const item = localStorageTasks[localStorageIndexTasks];
 
-        if(!item.checked &&((item.intervalsMade + 1) >= item.totalIntervals)){
+        //If we pass the total intervals, make the item checked/done
+        if (!item.checked && item.intervalsMade + 1 >= item.totalIntervals) {
           item.checked = true;
         }
 
-        item.intervalsMade = item.intervalsMade + 1;
+        item.intervalsMade = item.intervalsMade + 1;//Add 1 to the intervals made
 
-        localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
+        localStorage.setItem("tasks", JSON.stringify(localStorageTasks));//Save it into the locaoStorage
       }
 
-      //change the  value in tasks obect
+      //check if the item id exists in task
       const index = this.tasks.findIndex((item) => item.id === task.id);
 
+      //If there is an index, make the change
       if (index > -1) {
         const item = this.tasks[index];
         item.intervalsMade = item.intervalsMade + 1;
       }
+
+      //Stop the clock when we make a skip
+      this.stopClock();
     },
     passCurrentState() {
       const currentState = localStorage.getItem("currentState");
@@ -457,11 +464,11 @@ export default {
         localStorage.audio = JSON.stringify(config.audio);
       } else {
         //Already has the things in localStorage
-        console.log("Items registered in localStorage");
+        //console.log("Items registered in localStorage");
       }
     } else {
       //There is no support to web storage
-      console.log("There is no suport to localStorage!");
+      //console.log("There is no suport to localStorage!");
       alert("There is no suport to localStorage!");
     }
   },

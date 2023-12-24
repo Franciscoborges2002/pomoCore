@@ -1,81 +1,81 @@
 <template>
   <div class="modal-overlay" @click="$emit('close-modal')">
-    <div class="modal" @click.stop>
-      <!-- <img class="check" src="~/assets/check-icon.png" alt="" /> -->
-      <button class="closeModal" @click="$emit('close-modal')">Close</button>
-      <div class="header">
-        <h1>Settings:</h1>
+    <div class="modalOutline" @click.stop>
+      <div class="modalInitialPart">
+        <button class="closeModal" @click="$emit('close-modal')">X</button>
       </div>
-      <div class="innerOption">
-        <h2>Name:</h2>
-        <div>
-          <input
-            type="text"
-            class="innerOptionChanger"
-            v-bind:id="this.task.id + 'taskName'"
-            :value="this.task.description"
-          />
+      <div class="modalMainPart">
+        <div class="header">
+          <h1>Settings:</h1>
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Intervals:</h2>
-        <div>
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            v-bind:id="this.task.id + 'intervalsMade'"
-            :value="this.task.intervalsMade"
-          />
-          /
-          <input
-            type="number"
-            min="0"
-            max="1440"
-            class="innerOptionChanger"
-            v-bind:id="this.task.id + 'totalIntervals'"
-            :value="this.task.totalIntervals"
-          />
+        <div class="innerOption">
+          <h2>Name:</h2>
+          <div>
+            <input
+              type="text"
+              class="innerOptionChanger"
+              v-bind:id="this.task.id + 'taskName'"
+              :value="this.task.description"
+            />
+          </div>
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Done:</h2>
-        <div>
-          <input
-            type="checkbox"
-            v-bind:id="this.task.id + 'checkboxDone'"
-            v-model="this.task.checked"
-          />
+        <div class="innerOption">
+          <h2>Intervals:</h2>
+          <div>
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              v-bind:id="this.task.id + 'intervalsMade'"
+              :value="this.task.intervalsMade"
+            />
+            /
+            <input
+              type="number"
+              min="0"
+              max="1440"
+              class="innerOptionChanger"
+              v-bind:id="this.task.id + 'totalIntervals'"
+              :value="this.task.totalIntervals"
+            />
+          </div>
         </div>
-      </div>
-      <div class="innerOption">
-        <h2>Working:</h2>
-        <div>
-          <input
-            type="checkbox"
-            v-bind:id="this.task.id + 'checkboxWorking'"
-            v-model="this.task.working"
-          />
+        <div class="innerOption">
+          <h2>Done:</h2>
+          <div>
+            <input
+              type="checkbox"
+              v-bind:id="this.task.id + 'checkboxDone'"
+              v-model="this.task.checked"
+            />
+          </div>
         </div>
+        <div class="innerOption">
+          <h2>Working:</h2>
+          <div>
+            <input
+              type="checkbox"
+              v-bind:id="this.task.id + 'checkboxWorking'"
+              v-model="this.task.working"
+            />
+          </div>
+        </div>
+        <div class="innerOption">id: {{ this.task.id }}</div>
       </div>
-      <div class="innerOption">id: {{ this.task.id }}</div>
-      <div class="dangerStuff">
-        <p class="dangerText" @click="deleteTask()">Delete Task</p>
+      <div class="modalBottomPart">
+        <div class="dangerStuff">
+          <p class="dangerText" @click="deleteTask()">Delete Task</p>
+        </div>
+        <button class="saveSettings" @click="saveOnLocalStorage()">
+          Save!
+        </button>
       </div>
-      <button class="saveSettings" @click="saveOnLocalStorage()">Save!</button>
     </div>
-    <div class="close"></div>
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line no-undef
-/* const props = defineProps({
-  taskId: String,
-  taskDescription: String,
-}) */
-
 export default {
   name: "TaskSettingsModal",
   data: () => {
@@ -92,8 +92,9 @@ export default {
   },
   methods: {
     saveOnLocalStorage() {
-      let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));
-      let localStorageCurrentTask = JSON.parse(
+      //console.log(this.task)
+      let localStorageTasks = JSON.parse(localStorage.getItem("tasks"));//get all the tasks from localstorage
+      let localStorageCurrentTask = JSON.parse(//Get current working task from localStorage
         localStorage.getItem("currentTask")
       );
       let itemTask;
@@ -108,6 +109,7 @@ export default {
       const done = document.getElementById(
         this.task.id + "checkboxDone"
       ).checked;
+
       const working = document.getElementById(
         this.task.id + "checkboxWorking"
       ).checked;
@@ -127,6 +129,7 @@ export default {
         itemTask.totalIntervals = totalIntervals;
         itemTask.checked = done;
         itemTask.working = working;
+        //console.log("Working task: " + itemTask.working + ". Working from page: " + working)
       }
 
       //change working part
@@ -137,6 +140,7 @@ export default {
 
       //if there is a working task and he wants to change
       if (Object.keys(localStorageCurrentTask).length > 0 && working) {
+        //console.log('Change current task, there already is an working task')
         localStorage.setItem("currentTask", JSON.stringify(itemTask));
 
         //get the index of the working task in the task of the localStorage
@@ -152,16 +156,17 @@ export default {
 
       //if there is no working task and user puts to work
       if (Object.keys(localStorageCurrentTask).length === 0 && working) {
+        //console.log('Change current task, but there is no previous task')
         localStorage.setItem("currentTask", JSON.stringify(itemTask));
       }
 
-      console.log(localStorageTasks);
+      //console.log(localStorageTasks);
 
       //save in localStorage
       localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
 
       //reload page
-      location.reload();
+      //location.reload();
     },
     deleteTask() {
       if (window.confirm("Do you want to really delete the Task?")) {
@@ -216,27 +221,44 @@ export default {
   background-color: #000000da;
 }
 
-.modal {
+.modalOutline {
   text-align: center;
   background-color: white;
-  height: 380px;
+  height: 420px;
   width: 500px;
   margin-top: 10%;
   padding: 30px 0;
   border-radius: 20px;
 }
 
-.closeModal {
-  margin-left: 10px;
-  border: 0px;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
+.modalInitialPart {
   display: flex;
+  justify-content: end;
+  padding-bottom: 2%;
+}
+
+.closeModal {
+  cursor: pointer;
+  font-size: x-large;
+  font-weight: 600;
+  margin-right: 3%;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.modalBottomPart {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding-top: 1%;
 }
 
 .header {
   padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .saveSettings {
@@ -246,7 +268,18 @@ export default {
   color: white;
   font-size: 14px;
   border-radius: 16px;
-  margin-top: 28px;
+  margin-top: 24px;
+  transition: all 0.5s;
+}
+
+.saveSettings:hover {
+  cursor: pointer;
+  background-color: #ac003e;
+}
+
+.saveSettings:active {
+  cursor: pointer;
+  background-color: #ac000e;
 }
 
 .innerOption {
@@ -261,5 +294,12 @@ export default {
   color: #ac003e;
   text-decoration: underline;
   margin: 0px;
+}
+
+.dangerText {
+  color: #ac003e;
+  text-decoration: underline;
+  margin: 0px;
+  cursor: pointer;
 }
 </style>
