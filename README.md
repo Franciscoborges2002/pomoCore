@@ -4,11 +4,9 @@
   <a href="#about">About</a> &#xa0; | &#xa0;
   <a href="#tech-used">Tech Used</a> &#xa0; | &#xa0;
   <a href="#layout">Layout</a> &#xa0; | &#xa0;
-  <a href="#functionalities">Functionalities</a> &#xa0; | &#xa0;
   <a href="#roadMap">Road Map</a> &#xa0; | &#xa0;
   <a href="#howToStartTheProject">Run Project</a> &#xa0; | &#xa0;
   <a href="#license">License</a> &#xa0; | &#xa0;
-  <a href="https://ignite-lab.rocketseat.com.br/ticket/green/Franciscoborges2002/share">My ticket of the event</a> &#xa0; | &#xa0;
   <a href="https://github.com/Franciscoborges2002" target="_blank">Author</a>
 </p>
 
@@ -26,14 +24,13 @@ You can see the layout thourh [Figma](https://www.figma.com/file/9uMwwhxJYl08Pnx
 ## 🛣️ Road Map <a name="roadMap"></a>
 - [x] Make the base idea
     - [x] What will the app have
-- [z] Start making the app 
-    - [x] Placeholder when no video is clicked
-    - [x] Main page to Aurora
-    - [x] Políticas de Privacidade Page protopype
-    - [x] Loading Page
-    - [x] Participants Page
-    - [ ] Custom Video Player
-    - [ ] Make App Responsive
+- [x] Start making the app 
+    - [x] The home view
+    - [x] Make the timer, and main components of time work
+    - [x] Make the settings modal
+    - [x] Make the tasks
+    - [x] Make the tasks modal
+    - [x] Make everything look nice
 
 ### Start the project <a name="howToStartTheProject"></a>
 Before starting the project you need at least [Git](https://git-scm.com) and [Node](https://nodejs.org).
