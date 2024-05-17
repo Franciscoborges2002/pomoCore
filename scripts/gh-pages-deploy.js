@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 
 (async () => {
   try {
-    await execa("git", ["checkout", "gh-pages"]);
+    await execa("git", ["checkout", "--orphan", "gh-pages"]);
     // eslint-disable-next-line no-console
     console.log("Building started...");
     await execa("npm", ["run", "build"]);
