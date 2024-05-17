@@ -8,13 +8,6 @@
           >pomo</a
         >Core
       </h1>
-      <a
-        class="linkGitHub"
-        target="_blank"
-        href="https://github.com/Franciscoborges2002/pomoCore"
-      >
-        <img class="gitHubIcon" src="@/assets/gitHub.svg" />
-      </a>
     </div>
     <div class="main">
       <div class="buttons corePart left">
@@ -24,16 +17,20 @@
         />
         <button @click="handleTimeButton">
           <p class="stateMain">normal</p>
-          <img v-if="playButtonShow" src="@/assets/playButton.svg" />
-          <img v-else src="@/assets/pauseButton.svg" />
+          <!-- <img v-if="playButtonShow" src="@/assets/playButton.svg" />
+          <img v-else src="@/assets/pauseButton.svg" /> -->
+          <v-icon v-if="playButtonShow" name="fa-play" scale="1.8" fill="#858585" />
+          <v-icon v-else name="gi-pause-button" scale="1.8" fill="#858585" />
         </button>
         <button @click="handleSkipButton">
-          <img src="@/assets/skipButton.svg" />
+          <!-- <img src="@/assets/skipButton.svg" /> -->
+          <v-icon name="io-play-skip-forward" scale="1.8" fill="#858585" />
         </button>
         <button @click="showSettingsModal = true">
           <!-- @click="togglePopup('buttonTrigger')" -->
           <p class="stateSettings">normal</p>
-          <img src="@/assets/settingsButton.svg" />
+          <!-- <img src="@/assets/settingsButton.svg" /> -->
+          <v-icon name="io-settings-sharp" scale="1.8" fill="#858585" />
           <!-- <SettingsMenu v-if="popupTriggers.buttonTrigger" /> -->
         </button>
       </div>
@@ -605,10 +602,6 @@ footer {
   font-weight: 700;
   font-style: normal;
   transition: font-weight 1s ease;
-}
-
-.timer:hover {
-  font-style: italic;
 }
 
 /* Style for all buttons*/

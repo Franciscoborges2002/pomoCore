@@ -1,3 +1,6 @@
+/*
+* This file contains the main configuration for the start of the application
+*/
 module.exports = {
     focusTime: 1500,
     lilBreak: 300,
