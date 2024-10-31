@@ -1,4 +1,4 @@
-# pomoVue
+# pomoCore
 
 <p align="center">
   <a href="#about">About</a> &#xa0; | &#xa0;
